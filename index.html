@@ -1,32 +1,34 @@
 <!doctype html>
-<html lang="sq">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="color-scheme" content="light" />
-    <meta name="description" content="Market Share Intelligence për analizë të pozicionit konkurrues bankar." />
-    <title>Market Share Intelligence</title>
+    <meta name="description" content="NLB executive market share intelligence for competitive banking analysis." />
+    <title>NLB Market Share Intelligence</title>
     <style>
 :root {
-  --ink: #10233f;
-  --muted: #66758b;
-  --line: #dce5ef;
+  --ink: #102a43;
+  --ink-soft: #40566a;
+  --muted: #718096;
+  --line: #dfe5e9;
+  --line-strong: #cbd5dc;
   --panel: #ffffff;
-  --canvas: #f4f7fb;
-  --navy: #102b4e;
-  --navy-2: #183b65;
-  --blue: #2676e5;
-  --cyan: #24b8c7;
-  --teal: #0f8e82;
-  --orange: #ea8b2d;
-  --red: #c74a5c;
-  --green: #16866d;
-  --shadow: 0 12px 35px rgba(22, 49, 82, 0.08);
-  --radius: 18px;
+  --canvas: #f5f7f8;
+  --nlb-navy: #063f70;
+  --nlb-blue: #005ca9;
+  --nlb-sky: #009fe3;
+  --nlb-teal: #00a19a;
+  --nlb-pale: #e9f5fb;
+  --red: #b84552;
+  --green: #14735c;
+  --orange: #c8782f;
+  --shadow: 0 4px 16px rgba(16, 42, 67, .06);
+  --radius: 12px;
 }
 
 * { box-sizing: border-box; }
-
+[hidden] { display: none !important; }
 html { scroll-behavior: smooth; }
 
 body {
@@ -36,145 +38,148 @@ body {
   background: var(--canvas);
   font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   font-variant-numeric: tabular-nums;
+  -webkit-font-smoothing: antialiased;
 }
 
 button, select, input { font: inherit; }
-
-button, select { min-height: 40px; }
+button, select { min-height: 42px; }
 
 .skip-link {
   position: fixed;
   left: 16px;
-  top: -60px;
+  top: -64px;
   z-index: 100;
   padding: 10px 14px;
   color: white;
-  background: var(--navy);
+  background: var(--nlb-navy);
   border-radius: 8px;
 }
-
 .skip-link:focus { top: 12px; }
 
 .topbar {
   position: sticky;
   top: 0;
   z-index: 20;
-  min-height: 72px;
+  color: var(--ink);
+  background: #ffffff;
+  border-bottom: 3px solid var(--nlb-blue);
+  box-shadow: 0 2px 12px rgba(16, 42, 67, .06);
+}
+
+.topbar-inner {
+  width: min(1600px, 100%);
+  min-height: 76px;
+  margin: 0 auto;
+  padding: 12px clamp(18px, 3vw, 48px);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 20px;
-  padding: 12px clamp(18px, 3vw, 48px);
-  color: white;
-  background: linear-gradient(115deg, #0d2543 0%, #173b67 72%, #125d70 100%);
-  box-shadow: 0 6px 24px rgba(6, 27, 52, 0.2);
+  gap: 24px;
 }
 
-.brand, .topbar-actions, .page-heading, .card-header, .legend, .data-checks {
+.brand, .topbar-actions, .page-heading, .card-header, .legend, .data-checks, .heading-actions {
   display: flex;
   align-items: center;
 }
 
-.brand { gap: 12px; }
-.brand strong { display: block; letter-spacing: 0.01em; }
-.brand small { display: block; margin-top: 2px; color: #bcd0e7; }
+.brand { gap: 13px; }
+.brand strong { display: block; font-size: 17px; font-weight: 760; letter-spacing: -.01em; }
+.brand small { display: block; margin-top: 4px; color: var(--muted); font-size: 11px; }
 
 .brand-mark {
-  width: 42px;
-  height: 42px;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  gap: 3px;
-  padding: 10px;
-  border: 1px solid rgba(255,255,255,.2);
-  border-radius: 12px;
-  background: rgba(255,255,255,.08);
+  width: 46px;
+  height: 46px;
+  display: grid;
+  place-items: center;
+  color: white;
+  background: var(--nlb-blue);
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 900;
+  letter-spacing: -.04em;
 }
 
-.brand-mark span { width: 5px; border-radius: 3px 3px 0 0; background: #65d6df; }
-.brand-mark span:nth-child(1) { height: 9px; }
-.brand-mark span:nth-child(2) { height: 16px; }
-.brand-mark span:nth-child(3) { height: 22px; }
-
 .topbar-actions { justify-content: flex-end; gap: 10px; flex-wrap: wrap; }
-
 .confidentiality {
-  padding: 5px 8px;
-  border: 1px solid rgba(255,255,255,.22);
+  padding: 6px 9px;
+  color: var(--nlb-blue);
+  border: 1px solid #bdd7e8;
   border-radius: 999px;
-  color: #d5e3f1;
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: .09em;
+  font-size: 9px;
+  font-weight: 850;
+  letter-spacing: .12em;
 }
 
 .source-pill {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 6px 10px;
-  color: #d9e8f5;
+  padding: 7px 9px;
+  color: var(--muted);
   border: 0;
   background: transparent;
-  font-size: 12px;
+  font-size: 11px;
 }
-
-.status-dot { width: 8px; height: 8px; border-radius: 50%; background: #f0b761; box-shadow: 0 0 0 4px rgba(240,183,97,.13); }
-.source-pill.ready .status-dot { background: #5fe0b2; box-shadow: 0 0 0 4px rgba(95,224,178,.13); }
-.source-pill.error .status-dot { background: #ff8392; box-shadow: 0 0 0 4px rgba(255,131,146,.13); }
+.status-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--orange); box-shadow: 0 0 0 4px rgba(200,120,47,.1); }
+.source-pill.ready .status-dot { background: var(--nlb-teal); box-shadow: 0 0 0 4px rgba(0,161,154,.1); }
+.source-pill.error .status-dot { background: var(--red); box-shadow: 0 0 0 4px rgba(184,69,82,.1); }
 
 .button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  min-height: 40px;
-  padding: 9px 14px;
+  min-height: 42px;
+  padding: 9px 15px;
   border: 1px solid transparent;
-  border-radius: 10px;
+  border-radius: 8px;
   cursor: pointer;
-  font-weight: 700;
+  font-size: 12px;
+  font-weight: 750;
   text-decoration: none;
-  transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+  transition: background .15s ease, border-color .15s ease, color .15s ease;
 }
+.button:focus-visible, select:focus-visible, summary:focus-visible { outline: 3px solid rgba(0,159,227,.22); outline-offset: 2px; }
+.button-primary { color: white; background: var(--nlb-blue); }
+.button-primary:hover { background: var(--nlb-navy); }
+.button-secondary { color: var(--nlb-blue); border-color: #b9d3e4; background: white; }
+.button-secondary:hover { border-color: var(--nlb-blue); background: var(--nlb-pale); }
+.button-quiet { color: var(--ink-soft); border-color: var(--line); background: #f8fafb; align-self: end; }
+.button-quiet:hover { border-color: var(--line-strong); background: white; }
 
-.button:hover { transform: translateY(-1px); }
-.button:focus-visible, select:focus-visible, summary:focus-visible { outline: 3px solid rgba(38,118,229,.3); outline-offset: 2px; }
-.button-primary { color: #102b4e; background: #65d6df; }
-.button-primary:hover { box-shadow: 0 6px 18px rgba(48,190,204,.25); }
-.button-secondary { color: var(--navy); border-color: var(--line); background: white; }
-.button-quiet { color: var(--muted); border-color: var(--line); background: #f8fafc; align-self: end; }
-
-main { width: min(1540px, 100%); margin: 0 auto; padding: 24px clamp(16px, 3vw, 44px) 48px; }
+main { width: min(1600px, 100%); margin: 0 auto; padding: 26px clamp(16px, 3vw, 48px) 54px; }
 
 .filter-rail {
   display: grid;
-  grid-template-columns: minmax(120px, .8fr) minmax(130px, .85fr) minmax(210px, 1.5fr) minmax(170px, 1.15fr) minmax(130px, .85fr) minmax(110px, .7fr) auto;
+  grid-template-columns: minmax(120px, .8fr) minmax(130px, .85fr) minmax(210px, 1.45fr) minmax(175px, 1.1fr) minmax(130px, .85fr) minmax(110px, .7fr) auto;
   gap: 12px;
-  padding: 14px;
+  padding: 15px;
   border: 1px solid var(--line);
-  border-radius: 16px;
+  border-top: 3px solid var(--nlb-teal);
+  border-radius: var(--radius);
   background: white;
   box-shadow: var(--shadow);
 }
-
 .filter-rail label { min-width: 0; }
-.filter-rail label > span { display: block; margin: 0 0 6px 2px; color: var(--muted); font-size: 11px; font-weight: 800; letter-spacing: .07em; text-transform: uppercase; }
+.filter-rail label > span { display: block; margin: 0 0 7px 2px; color: var(--muted); font-size: 9px; font-weight: 850; letter-spacing: .11em; text-transform: uppercase; }
 
 select {
   width: 100%;
-  padding: 8px 34px 8px 10px;
+  padding: 9px 34px 9px 11px;
   color: var(--ink);
   border: 1px solid var(--line);
-  border-radius: 9px;
-  background: #fbfcfe;
+  border-radius: 7px;
+  background-color: #ffffff;
 }
+select:hover { border-color: #aebdc7; }
 
-.page-heading { justify-content: space-between; gap: 24px; padding: 30px 2px 18px; }
-.page-heading h1 { margin: 4px 0 6px; font-size: clamp(26px, 3vw, 38px); letter-spacing: -.035em; }
-.page-heading p { margin: 0; color: var(--muted); }
-.eyebrow, .card-kicker { color: var(--blue) !important; font-size: 10px; font-weight: 850; letter-spacing: .12em; }
+.page-heading { justify-content: space-between; gap: 28px; padding: 34px 3px 20px; }
+.page-heading h1 { margin: 5px 0 8px; font-size: clamp(30px, 3vw, 42px); font-weight: 700; letter-spacing: -.04em; line-height: 1.08; }
+.page-heading p { margin: 0; color: var(--muted); font-size: 13px; }
+.eyebrow, .card-kicker { color: var(--nlb-blue) !important; font-size: 9px; font-weight: 900; letter-spacing: .15em; }
+.heading-actions { justify-content: flex-end; gap: 14px; }
+.public-source-note { display: inline-flex; align-items: center; gap: 7px; color: var(--muted); font-size: 11px; white-space: nowrap; }
+.public-source-note > span { width: 7px; height: 7px; border-radius: 50%; background: var(--nlb-teal); }
 
 .kpi-grid {
   display: grid;
@@ -184,32 +189,19 @@ select {
 }
 
 .kpi-card {
-  position: relative;
-  min-height: 138px;
-  overflow: hidden;
-  padding: 18px;
+  min-height: 142px;
+  padding: 19px 20px;
   border: 1px solid var(--line);
+  border-top: 3px solid #b8cbd7;
   border-radius: var(--radius);
   background: white;
   box-shadow: var(--shadow);
 }
-
-.kpi-card::after {
-  content: "";
-  position: absolute;
-  width: 72px;
-  height: 72px;
-  right: -25px;
-  top: -25px;
-  border-radius: 50%;
-  background: rgba(38,118,229,.06);
-}
-
-.kpi-card.featured { color: white; border-color: transparent; background: linear-gradient(135deg, var(--navy) 0%, var(--navy-2) 100%); }
-.kpi-card.featured .kpi-label, .kpi-card.featured .kpi-note { color: #bdd0e4; }
-.kpi-label { color: var(--muted); font-size: 11px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
-.kpi-value { margin-top: 12px; font-size: clamp(25px, 2.6vw, 36px); font-weight: 780; letter-spacing: -.035em; }
-.kpi-note { margin-top: 6px; color: var(--muted); font-size: 12px; }
+.kpi-card.featured { color: white; border-color: var(--nlb-blue); background: var(--nlb-blue); box-shadow: 0 5px 18px rgba(0,92,169,.16); }
+.kpi-card.featured .kpi-label, .kpi-card.featured .kpi-note { color: #dcecf7; }
+.kpi-label { color: var(--muted); font-size: 9px; font-weight: 850; letter-spacing: .12em; text-transform: uppercase; }
+.kpi-value { margin-top: 16px; font-size: clamp(27px, 2.5vw, 37px); font-weight: 700; letter-spacing: -.04em; }
+.kpi-note { margin-top: 7px; color: var(--muted); font-size: 11px; }
 .delta { font-weight: 750; }
 .positive { color: var(--green) !important; }
 .negative { color: var(--red) !important; }
@@ -217,86 +209,87 @@ select {
 
 .dashboard-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(280px, .72fr);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(290px, .72fr);
   gap: 14px;
   margin-top: 14px;
 }
 
 .card {
-  padding: 20px;
+  padding: 21px;
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  background: var(--panel);
+  background: white;
   box-shadow: var(--shadow);
 }
-
 .span-2 { grid-column: span 2; }
-.card-header { min-height: 46px; justify-content: space-between; gap: 18px; }
-.card-header h2, .data-card h2 { margin: 3px 0 0; font-size: 18px; letter-spacing: -.015em; }
+.card-header { min-height: 47px; justify-content: space-between; gap: 18px; }
+.card-header h2, .data-card h2 { margin: 5px 0 0; font-size: 19px; font-weight: 700; letter-spacing: -.02em; }
 .card-header p, .data-card p { margin: 0; }
-.unit-badge { padding: 5px 9px; color: var(--muted); border: 1px solid var(--line); border-radius: 999px; background: #f8fafc; font-size: 11px; font-weight: 800; }
+.unit-badge { padding: 6px 9px; color: var(--muted); border: 1px solid var(--line); border-radius: 999px; background: #f7f9fa; font-size: 9px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; }
 
 .chart { min-height: 310px; margin-top: 12px; }
 .chart-compact { min-height: 245px; }
 .chart svg { width: 100%; height: auto; overflow: visible; }
 .chart-empty { min-height: 240px; display: grid; place-items: center; color: var(--muted); text-align: center; }
-.chart-grid { stroke: #e7edf4; stroke-width: 1; }
-.chart-axis { fill: #7b899c; font-size: 10px; }
+.chart-grid { stroke: #e7ecef; stroke-width: 1; }
+.chart-axis { fill: #7a8995; font-size: 10px; }
 .chart-line { fill: none; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
-.chart-area { opacity: .09; }
+.chart-area { opacity: .07; }
 .chart-point { stroke: white; stroke-width: 2; }
-.legend { gap: 14px; flex-wrap: wrap; justify-content: flex-end; color: var(--muted); font-size: 12px; }
-.legend-item { display: inline-flex; align-items: center; gap: 6px; }
-.legend-dot { width: 9px; height: 9px; border-radius: 50%; }
+.legend { gap: 15px; flex-wrap: wrap; justify-content: flex-end; color: var(--muted); font-size: 11px; }
+.legend-item { display: inline-flex; align-items: center; gap: 7px; }
+.legend-dot { width: 9px; height: 9px; border-radius: 2px; }
 
-.signal-card { color: white; background: linear-gradient(155deg, #15385f 0%, #102b4e 64%, #0c6672 140%); border-color: transparent; }
-.signal-card .card-kicker { color: #65d6df !important; }
-.signal-card h2 { margin: 4px 0 18px; font-size: 19px; }
-.signal-card .signal-value { margin: 10px 0 2px; font-size: 32px; font-weight: 800; letter-spacing: -.04em; }
-.signal-card .signal-label { color: #bed2e6; font-size: 12px; }
-.signal-card .signal-track { height: 10px; margin: 22px 0 12px; overflow: hidden; border-radius: 999px; background: rgba(255,255,255,.12); }
-.signal-card .signal-fill { height: 100%; border-radius: inherit; background: #65d6df; }
-.signal-card .signal-row { display: flex; justify-content: space-between; gap: 12px; padding: 12px 0; border-top: 1px solid rgba(255,255,255,.11); }
-.signal-card .signal-row span { color: #bcd0e4; font-size: 12px; }
-.signal-card .signal-row strong { font-size: 13px; }
+.signal-card { color: white; background: var(--nlb-navy); border-color: var(--nlb-navy); box-shadow: 0 5px 18px rgba(6,63,112,.15); }
+.signal-card .card-kicker { color: #7ed7d2 !important; }
+.signal-card h2 { margin: 6px 0 20px; font-size: 21px; font-weight: 700; }
+.signal-card .signal-value { margin: 11px 0 3px; font-size: 38px; font-weight: 700; letter-spacing: -.04em; }
+.signal-card .signal-label { color: #c6d9e7; font-size: 11px; }
+.signal-card .signal-track { height: 7px; margin: 23px 0 14px; overflow: hidden; border-radius: 999px; background: rgba(255,255,255,.15); }
+.signal-card .signal-fill { height: 100%; border-radius: inherit; background: var(--nlb-teal); }
+.signal-card .signal-row { display: flex; justify-content: space-between; gap: 12px; padding: 12px 0; border-top: 1px solid rgba(255,255,255,.12); }
+.signal-card .signal-row span { color: #b9cddb; font-size: 11px; }
+.signal-card .signal-row strong { font-size: 12px; }
 
-.insight-list { margin: 14px 0 0; padding: 0; list-style: none; counter-reset: insight; }
-.insight-list li { position: relative; padding: 12px 0 12px 40px; border-top: 1px solid var(--line); color: #384b63; line-height: 1.45; font-size: 13px; }
-.insight-list li::before { counter-increment: insight; content: counter(insight); position: absolute; left: 0; top: 11px; width: 26px; height: 26px; display: grid; place-items: center; color: var(--navy); border-radius: 8px; background: #eaf2fd; font-size: 12px; font-weight: 850; }
+.insight-list { margin: 15px 0 0; padding: 0; list-style: none; counter-reset: insight; }
+.insight-list li { position: relative; padding: 13px 0 13px 42px; border-top: 1px solid var(--line); color: var(--ink-soft); line-height: 1.52; font-size: 12px; }
+.insight-list li::before { counter-increment: insight; content: counter(insight); position: absolute; left: 0; top: 12px; width: 27px; height: 27px; display: grid; place-items: center; color: white; border-radius: 50%; background: var(--nlb-blue); font-size: 11px; font-weight: 800; }
 
-.table-card { padding-bottom: 8px; }
-.table-wrap { overflow-x: auto; margin: 12px -4px 0; }
-table { width: 100%; border-collapse: collapse; min-width: 760px; }
-th { padding: 10px 12px; color: var(--muted); background: #f8fafc; border-bottom: 1px solid var(--line); font-size: 10px; letter-spacing: .07em; text-align: left; text-transform: uppercase; }
-td { padding: 11px 12px; border-bottom: 1px solid #edf1f6; color: #31455f; font-size: 13px; }
+.table-card { padding-bottom: 9px; }
+.table-wrap { overflow-x: auto; margin: 13px -5px 0; }
+table { width: 100%; border-collapse: collapse; min-width: 800px; }
+th { padding: 11px 12px; color: #667785; background: #f5f8fa; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); font-size: 9px; letter-spacing: .09em; text-align: left; text-transform: uppercase; }
+td { padding: 11px 12px; border-bottom: 1px solid #e9eef1; color: #31485b; font-size: 12px; }
 tr:last-child td { border-bottom: 0; }
-tr.selected-row td { background: #eef5ff; }
-tr.competitor-row td { background: #f2fbfb; }
+tr.selected-row td { background: #e9f5fb; }
+tr.selected-row td:first-child { box-shadow: inset 3px 0 0 var(--nlb-blue); }
+tr.competitor-row td { background: #edf9f8; }
+tr.competitor-row td:first-child { box-shadow: inset 3px 0 0 var(--nlb-teal); }
 .numeric { text-align: right; }
-.bank-cell { display: flex; align-items: center; gap: 9px; font-weight: 780; color: var(--ink); }
-.bank-avatar { width: 28px; height: 28px; display: grid; place-items: center; border-radius: 8px; color: var(--navy); background: #eaf0f7; font-size: 10px; }
+.bank-cell { display: flex; align-items: center; gap: 9px; font-weight: 760; color: var(--ink); }
+.bank-avatar { width: 29px; height: 29px; display: grid; place-items: center; border: 1px solid #cddce5; border-radius: 6px; color: var(--nlb-blue); background: #f2f7fa; font-size: 9px; }
 .position-cell { min-width: 130px; }
-.rank-track { width: 100%; height: 7px; overflow: hidden; border-radius: 999px; background: #edf2f7; }
-.rank-fill { height: 100%; border-radius: inherit; background: var(--blue); }
-.competitor-row .rank-fill { background: var(--cyan); }
+.rank-track { width: 100%; height: 6px; overflow: hidden; border-radius: 999px; background: #e7ecef; }
+.rank-fill { height: 100%; border-radius: inherit; background: var(--nlb-blue); }
+.competitor-row .rank-fill { background: var(--nlb-teal); }
 
-.mover-group + .mover-group { margin-top: 18px; }
-.mover-heading { margin-bottom: 6px; color: var(--muted); font-size: 10px; font-weight: 850; letter-spacing: .08em; text-transform: uppercase; }
-.mover-row { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 9px; padding: 10px 0; border-top: 1px solid var(--line); }
-.mover-rank { width: 27px; height: 27px; display: grid; place-items: center; border-radius: 8px; background: #f0f4f8; color: var(--muted); font-size: 11px; font-weight: 800; }
-.mover-name { font-size: 13px; font-weight: 760; }
-.mover-value { font-size: 12px; font-weight: 800; }
+.mover-group + .mover-group { margin-top: 19px; }
+.mover-heading { margin-bottom: 7px; color: var(--muted); font-size: 9px; font-weight: 850; letter-spacing: .11em; text-transform: uppercase; }
+.mover-row { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 10px; padding: 11px 0; border-top: 1px solid var(--line); }
+.mover-rank { width: 28px; height: 28px; display: grid; place-items: center; border: 1px solid var(--line); border-radius: 6px; background: #f7f9fa; color: var(--muted); font-size: 11px; font-weight: 800; }
+.mover-name { font-size: 12px; font-weight: 750; }
+.mover-value { font-size: 11px; font-weight: 800; }
 
-.data-card { display: grid; grid-template-columns: minmax(230px, 1fr) 1.5fr minmax(180px, .7fr); align-items: center; gap: 24px; margin-top: 14px; }
-.data-card > div > p:not(.card-kicker) { margin-top: 7px; color: var(--muted); font-size: 12px; }
+.data-card { display: grid; grid-template-columns: minmax(230px, 1fr) 1.5fr minmax(190px, .72fr); align-items: center; gap: 24px; margin-top: 14px; }
+.data-card > div > p:not(.card-kicker) { margin-top: 8px; color: var(--muted); font-size: 11px; }
 .data-checks { justify-content: center; gap: 8px; flex-wrap: wrap; }
-.check-chip { display: inline-flex; align-items: center; gap: 7px; padding: 8px 10px; border: 1px solid #cfe7dd; border-radius: 10px; color: #176d58; background: #f0faf6; font-size: 11px; font-weight: 750; }
-.check-chip.warn { color: #9a5c19; border-color: #f0d8b7; background: #fff8ee; }
-.check-icon { width: 17px; height: 17px; display: grid; place-items: center; border-radius: 50%; color: white; background: var(--green); font-size: 10px; }
+.check-chip { display: inline-flex; align-items: center; gap: 7px; padding: 8px 10px; border: 1px solid #cce4e1; border-radius: 999px; color: #14655c; background: #f0f9f8; font-size: 10px; font-weight: 750; }
+.check-chip.warn { color: #8d571e; border-color: #ead7bf; background: #fdf8f1; }
+.check-icon { width: 17px; height: 17px; display: grid; place-items: center; border-radius: 50%; color: white; background: var(--nlb-teal); font-size: 9px; }
 .check-chip.warn .check-icon { background: var(--orange); }
-details { color: var(--muted); font-size: 12px; }
-summary { color: var(--blue); cursor: pointer; font-weight: 800; }
-details p { line-height: 1.5; }
+details { color: var(--muted); font-size: 11px; }
+summary { color: var(--nlb-blue); cursor: pointer; font-weight: 800; }
+details p { line-height: 1.55; }
 
 .toast {
   position: fixed;
@@ -304,15 +297,16 @@ details p { line-height: 1.5; }
   bottom: 20px;
   z-index: 50;
   max-width: min(420px, calc(100vw - 40px));
-  padding: 12px 16px;
+  padding: 13px 16px;
   color: white;
-  border-radius: 11px;
-  background: var(--navy);
-  box-shadow: 0 12px 35px rgba(11,31,54,.25);
+  border-radius: 8px;
+  background: var(--nlb-navy);
+  box-shadow: 0 8px 24px rgba(6,63,112,.2);
   opacity: 0;
   transform: translateY(12px);
   pointer-events: none;
   transition: .2s ease;
+  font-size: 12px;
 }
 .toast.show { opacity: 1; transform: translateY(0); }
 
@@ -320,20 +314,21 @@ details p { line-height: 1.5; }
   .filter-rail { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .kpi-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .dashboard-grid { grid-template-columns: minmax(0, 1fr) minmax(280px, .65fr); }
-  .dashboard-grid .span-2 { grid-column: span 1; }
-  .ranking-grid .span-2 { grid-column: span 1; }
+  .dashboard-grid .span-2, .ranking-grid .span-2 { grid-column: span 1; }
   .data-card { grid-template-columns: 1fr 1.4fr; }
   .data-card details { grid-column: 1 / -1; }
 }
 
-@media (max-width: 760px) {
-  .topbar { position: static; align-items: flex-start; flex-direction: column; }
+@media (max-width: 820px) {
+  .topbar { position: static; }
+  .topbar-inner { align-items: flex-start; flex-direction: column; }
   .topbar-actions { justify-content: flex-start; }
   .confidentiality, .source-pill { display: none; }
-  main { padding-top: 16px; }
+  main { padding-top: 17px; }
   .filter-rail { grid-template-columns: 1fr 1fr; }
   .dimension-filter { grid-column: 1 / -1; }
   .page-heading { align-items: flex-start; flex-direction: column; }
+  .heading-actions { width: 100%; justify-content: space-between; }
   .kpi-grid { grid-template-columns: 1fr 1fr; }
   .dashboard-grid { grid-template-columns: 1fr; }
   .data-card { grid-template-columns: 1fr; }
@@ -341,12 +336,13 @@ details p { line-height: 1.5; }
   .chart { min-height: 250px; }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 520px) {
   .filter-rail, .kpi-grid { grid-template-columns: 1fr; }
   .dimension-filter { grid-column: auto; }
-  .card { padding: 16px; }
+  .card { padding: 17px; }
   .legend { justify-content: flex-start; }
-  .card-header { align-items: flex-start; flex-direction: column; }
+  .card-header, .heading-actions { align-items: flex-start; flex-direction: column; }
+  .public-source-note { white-space: normal; }
 }
 
 @media print {
@@ -360,83 +356,71 @@ details p { line-height: 1.5; }
     </style>
   </head>
   <body>
-    <a class="skip-link" href="#main-content">Kalo te përmbajtja</a>
+    <a class="skip-link" href="#main-content">Skip to content</a>
     <header class="topbar">
-      <div class="brand" aria-label="Market Share Intelligence">
-        <div class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></div>
-        <div>
-          <strong>Market Share Intelligence</strong>
-          <small>Competitive banking analytics</small>
+      <div class="topbar-inner">
+        <div class="brand" aria-label="NLB Market Share Intelligence">
+          <div class="brand-mark" aria-hidden="true">NLB</div>
+          <div>
+            <strong>NLB Market Share Intelligence</strong>
+            <small>Executive competitive banking analytics</small>
+          </div>
         </div>
-      </div>
-      <div class="topbar-actions">
-        <span class="confidentiality">INTERNAL · MANAGEMENT</span>
-        <button class="source-pill" id="sourceStatus" type="button" aria-label="Statusi i burimit të të dhënave">
-          <span class="status-dot"></span><span>Po ngarkohen të dhënat…</span>
-        </button>
-        <label class="button button-primary" for="excelUpload" title="Ngarko Excel për ta testuar pa ndryshuar burimin qendror">
-          <span aria-hidden="true">↥</span> Preview Excel
-        </label>
-        <input id="excelUpload" type="file" accept=".xlsx" hidden />
+        <div class="topbar-actions">
+          <span class="confidentiality">NLB MANAGEMENT VIEW</span>
+          <button class="source-pill" id="sourceStatus" type="button" aria-label="Data source status">
+            <span class="status-dot"></span><span>Loading data…</span>
+          </button>
+          <label class="button button-primary" for="excelUpload" title="Preview a new Excel file without changing the central source">
+            <span aria-hidden="true">↥</span> Update Excel
+          </label>
+          <input id="excelUpload" type="file" accept=".xlsx" hidden />
+        </div>
       </div>
     </header>
 
     <main id="main-content">
-      <section class="filter-rail" aria-label="Filtrat e analizës">
+      <section class="filter-rail" aria-label="Analysis filters">
+        <label><span>Bank</span><select id="bankFilter"></select></label>
+        <label><span>Period</span><select id="periodFilter"></select></label>
+        <label class="dimension-filter"><span>Dimension</span><select id="dimensionFilter"></select></label>
         <label>
-          <span>Banka</span>
-          <select id="bankFilter"></select>
-        </label>
-        <label>
-          <span>Periudha</span>
-          <select id="periodFilter"></select>
-        </label>
-        <label class="dimension-filter">
-          <span>Dimensioni</span>
-          <select id="dimensionFilter"></select>
-        </label>
-        <label>
-          <span>Krahasimi</span>
+          <span>Comparison</span>
           <select id="compareModeFilter">
-            <option value="custom">Konkurrent specifik</option>
-            <option value="benchmark">Benchmark mesatar</option>
+            <option value="custom">Specific competitor</option>
+            <option value="benchmark">Peer benchmark</option>
           </select>
         </label>
-        <label id="competitorField">
-          <span>Konkurrenti</span>
-          <select id="competitorFilter"></select>
-        </label>
+        <label id="competitorField"><span>Competitor</span><select id="competitorFilter"></select></label>
         <label id="benchmarkField">
-          <span>Benchmark</span>
+          <span>Peer group</span>
           <select id="benchmarkFilter">
             <option value="10">Top 10</option>
             <option value="5">Top 5</option>
             <option value="3">Top 3</option>
           </select>
         </label>
-        <button class="button button-quiet" id="resetFilters" type="button">Rivendos</button>
+        <button class="button button-quiet" id="resetFilters" type="button">Reset</button>
       </section>
 
       <section class="page-heading">
         <div>
-          <p class="eyebrow">EXECUTIVE COMPETITIVE VIEW</p>
-          <h1 id="pageTitle">Pozicioni konkurrues</h1>
-          <p id="pageSubtitle">Duke përgatitur analizën…</p>
+          <p class="eyebrow">NLB EXECUTIVE COMPETITIVE VIEW</p>
+          <h1 id="pageTitle">Competitive position</h1>
+          <p id="pageSubtitle">Preparing analysis…</p>
         </div>
         <div class="heading-actions">
-          <button class="button button-secondary" id="exportCsv" type="button">Eksporto ranking CSV</button>
+          <span class="public-source-note"><span></span>Public banking association data</span>
+          <button class="button button-secondary" id="exportCsv" type="button">Export ranking CSV</button>
         </div>
       </section>
 
-      <section class="kpi-grid" id="kpiGrid" aria-label="Treguesit kryesorë"></section>
+      <section class="kpi-grid" id="kpiGrid" aria-label="Key performance indicators"></section>
 
       <section class="dashboard-grid dashboard-grid-main">
         <article class="card chart-card span-2">
           <div class="card-header">
-            <div>
-              <p class="card-kicker">TRAJEKTORJA</p>
-              <h2 id="shareChartTitle">Market share në kohë</h2>
-            </div>
+            <div><p class="card-kicker">TRAJECTORY</p><h2 id="shareChartTitle">Market share over time</h2></div>
             <div class="legend" id="shareLegend"></div>
           </div>
           <div class="chart" id="shareChart"></div>
@@ -446,22 +430,14 @@ details p { line-height: 1.5; }
 
         <article class="card chart-card span-2">
           <div class="card-header">
-            <div>
-              <p class="card-kicker">VOLUMI</p>
-              <h2 id="valueChartTitle">Vlera absolute</h2>
-            </div>
-            <span class="unit-badge" id="valueChartUnit">milion EUR</span>
+            <div><p class="card-kicker">VOLUME</p><h2 id="valueChartTitle">Absolute value</h2></div>
+            <span class="unit-badge" id="valueChartUnit">EUR millions</span>
           </div>
           <div class="chart chart-compact" id="valueChart"></div>
         </article>
 
         <aside class="card insight-card">
-          <div class="card-header">
-            <div>
-              <p class="card-kicker">MANAGEMENT READOUT</p>
-              <h2>Çfarë ka rëndësi</h2>
-            </div>
-          </div>
+          <div class="card-header"><div><p class="card-kicker">MANAGEMENT READOUT</p><h2>What matters now</h2></div></div>
           <ol class="insight-list" id="insightList"></ol>
         </aside>
       </section>
@@ -469,23 +445,20 @@ details p { line-height: 1.5; }
       <section class="dashboard-grid ranking-grid">
         <article class="card span-2 table-card">
           <div class="card-header">
-            <div>
-              <p class="card-kicker">SEKTORI</p>
-              <h2>Renditja konkurruese</h2>
-            </div>
-            <span class="unit-badge" id="rankingUnit">k EUR</span>
+            <div><p class="card-kicker">SECTOR</p><h2>Competitive ranking</h2></div>
+            <span class="unit-badge" id="rankingUnit">EUR thousands</span>
           </div>
           <div class="table-wrap">
             <table>
               <thead>
                 <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">Banka</th>
-                  <th scope="col" class="numeric">Vlera</th>
+                  <th scope="col">Rank</th>
+                  <th scope="col">Bank</th>
+                  <th scope="col" class="numeric">Value</th>
                   <th scope="col" class="numeric">Market share</th>
-                  <th scope="col">Pozicioni relativ</th>
+                  <th scope="col">Relative position</th>
                   <th scope="col" class="numeric">Δ share MoM</th>
-                  <th scope="col" class="numeric">Rritja MoM</th>
+                  <th scope="col" class="numeric">Growth MoM</th>
                 </tr>
               </thead>
               <tbody id="rankingBody"></tbody>
@@ -494,12 +467,7 @@ details p { line-height: 1.5; }
         </article>
 
         <aside class="card movers-card">
-          <div class="card-header">
-            <div>
-              <p class="card-kicker">MOMENTUM</p>
-              <h2>Fituesit & humbësit</h2>
-            </div>
-          </div>
+          <div class="card-header"><div><p class="card-kicker">MOMENTUM</p><h2>Winners &amp; laggards</h2></div></div>
           <div id="moversList"></div>
         </aside>
       </section>
@@ -507,18 +475,19 @@ details p { line-height: 1.5; }
       <section class="card data-card">
         <div>
           <p class="card-kicker">DATA GOVERNANCE</p>
-          <h2>Gjendja e burimit</h2>
-          <p id="dataDescription">Kontroll automatik i strukturës dhe rakordimit.</p>
+          <h2>Source health</h2>
+          <p id="dataDescription">Automated structure and reconciliation checks.</p>
         </div>
         <div class="data-checks" id="dataChecks"></div>
         <details>
-          <summary>Metodologjia</summary>
-          <p>Market share = vlera e bankës / sektori bankar. Ndryshimi MoM i market share paraqitet në pikë përqindjeje. Benchmark-u është mesatarja e bankave të grupit të zgjedhur, duke përjashtuar bankën e analizuar. Të gjitha vlerat burimore janë në mijë EUR.</p>
+          <summary>Methodology</summary>
+          <p>Market share equals the bank value divided by the banking sector total. Monthly market share movement is shown in percentage points. The benchmark is the average of the selected peer group, excluding the bank being analysed. All source values are in EUR thousands.</p>
         </details>
       </section>
     </main>
 
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
     <script>
 /*!
 
@@ -542,8 +511,8 @@ globalThis.MSI_INITIAL_DATA = {"schemaVersion":1,"sourceFile":"01-Market-Share-D
 (function () {
   "use strict";
 
-  const COLORS = ["#2676e5", "#24b8c7", "#ea8b2d", "#8c68cf"];
-  const MONTHS = ["Jan", "Shk", "Mar", "Pri", "Maj", "Qer", "Kor", "Gus", "Sht", "Tet", "Nën", "Dhj"];
+  const COLORS = ["#005ca9", "#00a19a", "#009fe3", "#6f7f8f"];
+  const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
   const FLOW_METRICS = new Set([
     "Net profit",
     "Net Interest Income",
@@ -559,11 +528,11 @@ globalThis.MSI_INITIAL_DATA = {"schemaVersion":1,"sourceFile":"01-Market-Share-D
   const state = {
     data: null,
     sourceMode: "embedded",
-    bank: "RBKO",
+    bank: "NLB",
     period: null,
     dimension: "Assets",
     compareMode: "custom",
-    competitor: "BKT",
+    competitor: "RBKO",
     benchmarkGroup: 10,
     paramsApplied: false,
   };
@@ -603,7 +572,7 @@ globalThis.MSI_INITIAL_DATA = {"schemaVersion":1,"sourceFile":"01-Market-Share-D
 
   function normalizeData(payload) {
     if (!payload || !Array.isArray(payload.dimensions) || !payload.dimensions.length) {
-      throw new Error("Excel-i nuk përmban dimensione të lexueshme.");
+      throw new Error("The Excel file does not contain readable dimensions.");
     }
     payload.banks = Array.isArray(payload.banks) ? payload.banks.map(cleanName).filter(Boolean) : [];
     payload.dimensions = payload.dimensions.map((dimension) => {
@@ -799,22 +768,22 @@ globalThis.MSI_INITIAL_DATA = {"schemaVersion":1,"sourceFile":"01-Market-Share-D
     const ratio = analysis.dimension.metricType === "ratio";
     const isFlow = FLOW_METRICS.has(analysis.dimension.name);
     const fifthValue = isFlow ? analysis.selected.growth : analysis.ytdGrowth;
-    const fifthLabel = isFlow ? "Rritja MoM" : "Rritja YTD";
+    const fifthLabel = isFlow ? "Growth MoM" : "Growth YTD";
     const fifthNote = isFlow
-      ? `kundrejt ${periodLabel(analysis.previousPeriod)}`
-      : analysis.ytdBasePeriod ? `kundrejt ${periodLabel(analysis.ytdBasePeriod)}` : "pa bazë dhjetori";
+      ? `versus ${periodLabel(analysis.previousPeriod)}`
+      : analysis.ytdBasePeriod ? `versus ${periodLabel(analysis.ytdBasePeriod)}` : "no December baseline";
 
     const cards = ratio ? [
-      { label: "LTD gross", value: formatShare(analysis.selected.value, 1), note: "raport kredi/depozita", featured: true },
-      { label: "Renditja", value: `#${analysis.selected.rank}`, note: `nga ${analysis.rows.length} banka` },
-      { label: "Ndryshimi MoM", value: formatGrowth(analysis.selected.growth), note: `kundrejt ${periodLabel(analysis.previousPeriod)}`, delta: analysis.selected.growth },
-      { label: "Gap ndaj krahasimit", value: formatDeltaPp(analysis.comparisonGap), note: state.compareMode === "custom" ? analysis.competitor.bank : `Top ${state.benchmarkGroup} avg`, delta: analysis.comparisonGap },
-      { label: "Vlera benchmark", value: formatShare(analysis.benchmarkCurrent, 1), note: `Top ${state.benchmarkGroup}, pa ${analysis.selected.bank}` },
+      { label: "Gross LTD", value: formatShare(analysis.selected.value, 1), note: "loan-to-deposit ratio", featured: true },
+      { label: "Sector rank", value: `#${analysis.selected.rank}`, note: `out of ${analysis.rows.length} banks` },
+      { label: "Movement MoM", value: formatGrowth(analysis.selected.growth), note: `versus ${periodLabel(analysis.previousPeriod)}`, delta: analysis.selected.growth },
+      { label: "Comparison gap", value: formatDeltaPp(analysis.comparisonGap), note: state.compareMode === "custom" ? analysis.competitor.bank : `Top ${state.benchmarkGroup} average`, delta: analysis.comparisonGap },
+      { label: "Peer benchmark", value: formatShare(analysis.benchmarkCurrent, 1), note: `Top ${state.benchmarkGroup}, excluding ${analysis.selected.bank}` },
     ] : [
       { label: "Market share", value: formatShare(analysis.selected.share), note: `${formatDeltaPp(analysis.selected.shareDelta)} MoM`, featured: true, delta: analysis.selected.shareDelta },
-      { label: "Renditja", value: `#${analysis.selected.rank}`, note: `nga ${analysis.rows.length} banka` },
-      { label: "Vlera", value: formatMillions(analysis.selected.value), note: "bilanc në milion EUR" },
-      { label: "Δ share MoM", value: formatDeltaPp(analysis.selected.shareDelta), note: `kundrejt ${periodLabel(analysis.previousPeriod)}`, delta: analysis.selected.shareDelta },
+      { label: "Sector rank", value: `#${analysis.selected.rank}`, note: `out of ${analysis.rows.length} banks` },
+      { label: "Value", value: formatMillions(analysis.selected.value), note: "balance in EUR millions" },
+      { label: "Δ share MoM", value: formatDeltaPp(analysis.selected.shareDelta), note: `versus ${periodLabel(analysis.previousPeriod)}`, delta: analysis.selected.shareDelta },
       { label: fifthLabel, value: formatGrowth(fifthValue), note: fifthNote, delta: fifthValue },
     ];
 
@@ -837,7 +806,7 @@ globalThis.MSI_INITIAL_DATA = {"schemaVersion":1,"sourceFile":"01-Market-Share-D
     const pad = { left: 56, right: 22, top: 24, bottom: 42 };
     const values = series.flatMap((item) => item.values).filter(finite);
     if (!values.length || periods.length < 1) {
-      element.innerHTML = '<div class="chart-empty">Nuk ka të dhëna të mjaftueshme për grafik.</div>';
+      element.innerHTML = '<div class="chart-empty">There is not enough data to render this chart.</div>';
       return;
     }
     let min = Math.min(...values);
@@ -883,7 +852,7 @@ globalThis.MSI_INITIAL_DATA = {"schemaVersion":1,"sourceFile":"01-Market-Share-D
 
   function renderSignal(analysis) {
     const ratio = analysis.dimension.metricType === "ratio";
-    const comparisonName = state.compareMode === "custom" ? analysis.competitor.bank : `Top ${state.benchmarkGroup} mesatare`;
+    const comparisonName = state.compareMode === "custom" ? analysis.competitor.bank : `Top ${state.benchmarkGroup} average`;
     const ahead = finite(analysis.comparisonGap) && analysis.comparisonGap >= 0;
     const selectedDisplay = ratio ? formatShare(analysis.selected.value, 1) : formatShare(analysis.selected.share);
     const comparatorDisplay = ratio ? formatShare(analysis.comparatorMetric, 1) : formatShare(analysis.comparatorMetric);
@@ -892,31 +861,31 @@ globalThis.MSI_INITIAL_DATA = {"schemaVersion":1,"sourceFile":"01-Market-Share-D
     $("competitiveSignal").innerHTML = `
       <p class="card-kicker">COMPETITIVE SIGNAL</p>
       <h2>${escapeHtml(analysis.selected.bank)} vs ${escapeHtml(comparisonName)}</h2>
-      <div class="signal-label">${ahead ? "Avantazh" : "Deficit"} në ${ratio ? "raport" : "market share"}</div>
+      <div class="signal-label">${ahead ? "Advantage" : "Deficit"} in ${ratio ? "the ratio" : "market share"}</div>
       <div class="signal-value">${escapeHtml(formatDeltaPp(analysis.comparisonGap))}</div>
       <div class="signal-track"><div class="signal-fill" style="width:${fill.toFixed(1)}%"></div></div>
       <div class="signal-row"><span>${escapeHtml(analysis.selected.bank)}</span><strong>${escapeHtml(selectedDisplay)}</strong></div>
       <div class="signal-row"><span>${escapeHtml(comparisonName)}</span><strong>${escapeHtml(comparatorDisplay)}</strong></div>
-      <div class="signal-row"><span>Gap në vlerë ndaj ${escapeHtml(analysis.competitor.bank)}</span><strong>${escapeHtml(ratio ? "—" : formatMillions(analysis.valueGap))}</strong></div>
-      <div class="signal-row"><span>Rank sektorial</span><strong>#${analysis.selected.rank}</strong></div>`;
+      <div class="signal-row"><span>Value gap vs ${escapeHtml(analysis.competitor.bank)}</span><strong>${escapeHtml(ratio ? "—" : formatMillions(analysis.valueGap))}</strong></div>
+      <div class="signal-row"><span>Sector rank</span><strong>#${analysis.selected.rank}</strong></div>`;
   }
 
   function renderInsights(analysis) {
     const ratio = analysis.dimension.metricType === "ratio";
-    $("shareChartTitle").textContent = ratio ? "LTD gross në kohë" : "Market share në kohë";
-    $("valueChartTitle").textContent = ratio ? "Krahasimi i raportit" : "Vlera absolute";
-    $("valueChartUnit").textContent = ratio ? "%" : "milion EUR";
-    const comparisonName = state.compareMode === "custom" ? analysis.competitor.bank : `benchmark-ut Top ${state.benchmarkGroup}`;
+    $("shareChartTitle").textContent = ratio ? "Gross LTD over time" : "Market share over time";
+    $("valueChartTitle").textContent = ratio ? "Ratio comparison" : "Absolute value";
+    $("valueChartUnit").textContent = ratio ? "%" : "EUR millions";
+    const comparisonName = state.compareMode === "custom" ? analysis.competitor.bank : `the Top ${state.benchmarkGroup} benchmark`;
     const insights = [];
     if (ratio) {
-      insights.push(`${analysis.selected.bank} raporton LTD gross ${formatShare(analysis.selected.value, 1)} dhe renditet #${analysis.selected.rank} në sektor.`);
-      insights.push(`Raporti ka lëvizur ${formatGrowth(analysis.selected.growth)} ndaj ${periodLabel(analysis.previousPeriod)}.`);
+      insights.push(`${analysis.selected.bank} reports a gross LTD ratio of ${formatShare(analysis.selected.value, 1)} and ranks #${analysis.selected.rank} in the sector.`);
+      insights.push(`The ratio moved ${formatGrowth(analysis.selected.growth)} versus ${periodLabel(analysis.previousPeriod)}.`);
     } else {
-      insights.push(`${analysis.selected.bank} mban pozicionin #${analysis.selected.rank} me ${formatShare(analysis.selected.share)} market share dhe ${formatMillions(analysis.selected.value)} volum.`);
-      const direction = (analysis.selected.shareDelta || 0) >= 0 ? "u rrit" : "u tkurr";
-      insights.push(`Market share ${direction} me ${formatDeltaPp(Math.abs(analysis.selected.shareDelta || 0))} ndaj ${periodLabel(analysis.previousPeriod)}; volumi ndryshoi ${formatGrowth(analysis.selected.growth)}.`);
-      insights.push(`Gap-i ndaj ${comparisonName} është ${formatDeltaPp(analysis.comparisonGap)}; ndaj ${analysis.competitor.bank}, diferenca e volumit është ${formatMillions(analysis.valueGap)}.`);
-      insights.push(`Top 3 bankat kontrollojnë ${formatShare(analysis.top3Concentration, 1)} të tregut; sektori ndryshoi ${formatGrowth(analysis.sectorGrowth)} MoM.`);
+      insights.push(`${analysis.selected.bank} holds the #${analysis.selected.rank} position with ${formatShare(analysis.selected.share)} market share and ${formatMillions(analysis.selected.value)} in volume.`);
+      const direction = (analysis.selected.shareDelta || 0) >= 0 ? "increased" : "contracted";
+      insights.push(`Market share ${direction} by ${formatDeltaPp(Math.abs(analysis.selected.shareDelta || 0))} versus ${periodLabel(analysis.previousPeriod)}; volume moved ${formatGrowth(analysis.selected.growth)}.`);
+      insights.push(`The gap versus ${comparisonName} is ${formatDeltaPp(analysis.comparisonGap)}; the volume gap versus ${analysis.competitor.bank} is ${formatMillions(analysis.valueGap)}.`);
+      insights.push(`The top three banks control ${formatShare(analysis.top3Concentration, 1)} of the market; the sector moved ${formatGrowth(analysis.sectorGrowth)} MoM.`);
     }
     $("insightList").innerHTML = insights.map((text) => `<li>${escapeHtml(text)}</li>`).join("");
   }
@@ -924,7 +893,7 @@ globalThis.MSI_INITIAL_DATA = {"schemaVersion":1,"sourceFile":"01-Market-Share-D
   function renderRanking(analysis) {
     const ratio = analysis.dimension.metricType === "ratio";
     const maxMetric = Math.max(...analysis.rows.map((row) => Math.abs(ratio ? row.value || 0 : row.share || 0)), .0001);
-    $("rankingUnit").textContent = ratio ? "raport" : "k EUR";
+    $("rankingUnit").textContent = ratio ? "ratio" : "EUR thousands";
     $("rankingBody").innerHTML = analysis.rows.map((row) => {
       const rowClass = row.bank === analysis.selected.bank ? "selected-row" : row.bank === analysis.competitor.bank ? "competitor-row" : "";
       const metric = ratio ? row.value : row.share;
@@ -954,8 +923,8 @@ globalThis.MSI_INITIAL_DATA = {"schemaVersion":1,"sourceFile":"01-Market-Share-D
         <span class="mover-value ${positive ? "positive" : "negative"}">${escapeHtml(ratio ? formatGrowth(getMetric(row)) : formatDeltaPp(getMetric(row)))}</span>
       </div>`).join("");
     $("moversList").innerHTML = `
-      <div class="mover-group"><div class="mover-heading">Përmirësimi më i madh</div>${rows(winners, true)}</div>
-      <div class="mover-group"><div class="mover-heading">Rënia më e madhe</div>${rows(losers, false)}</div>`;
+      <div class="mover-group"><div class="mover-heading">Largest gains</div>${rows(winners, true)}</div>
+      <div class="mover-group"><div class="mover-heading">Largest declines</div>${rows(losers, false)}</div>`;
   }
 
   function renderDataChecks(analysis) {
@@ -963,14 +932,14 @@ globalThis.MSI_INITIAL_DATA = {"schemaVersion":1,"sourceFile":"01-Market-Share-D
     const tolerance = Math.max(Math.abs(analysis.currentSector || 0) * 1e-9, .01);
     const reconciled = analysis.dimension.metricType === "ratio" || !finite(analysis.reconcileVariance) || Math.abs(analysis.reconcileVariance) <= tolerance;
     const checks = [
-      { text: `${state.data.banks.length} banka`, ok: state.data.banks.length >= 2 },
-      { text: `${state.data.dimensions.length} dimensione`, ok: state.data.dimensions.length >= 1 },
-      { text: `Muaji i fundit: ${periodLabel(latest)}`, ok: Boolean(latest) },
-      { text: analysis.dimension.metricType === "ratio" ? "Raport — pa sumë sektori" : "Sektori rakordohet", ok: reconciled },
+      { text: `${state.data.banks.length} banks`, ok: state.data.banks.length >= 2 },
+      { text: `${state.data.dimensions.length} dimensions`, ok: state.data.dimensions.length >= 1 },
+      { text: `Latest period: ${periodLabel(latest)}`, ok: Boolean(latest) },
+      { text: analysis.dimension.metricType === "ratio" ? "Ratio — no sector sum" : "Sector reconciled", ok: reconciled },
     ];
     $("dataChecks").innerHTML = checks.map((check) => `
       <span class="check-chip${check.ok ? "" : " warn"}"><span class="check-icon">${check.ok ? "✓" : "!"}</span>${escapeHtml(check.text)}</span>`).join("");
-    $("dataDescription").textContent = `${state.data.sourceFile || "Burimi aktiv"} · ${state.sourceMode === "central" ? "burim qendror" : state.sourceMode === "upload" ? "preview lokal" : "kopje e integruar"}`;
+    $("dataDescription").textContent = `${state.data.sourceFile || "Active source"} · ${state.sourceMode === "central" ? "central source" : state.sourceMode === "upload" ? "local preview" : "embedded copy"}`;
   }
 
   function renderDashboard() {
@@ -978,7 +947,7 @@ globalThis.MSI_INITIAL_DATA = {"schemaVersion":1,"sourceFile":"01-Market-Share-D
     const analysis = analyze(state.data, state);
     state.period = analysis.period;
     $("pageTitle").textContent = `${analysis.selected.bank} · ${analysis.dimension.name}`;
-    $("pageSubtitle").textContent = `${periodLabel(analysis.period)} · ${state.compareMode === "custom" ? `krahasuar me ${analysis.competitor.bank}` : `benchmark Top ${state.benchmarkGroup}`} · vlerat burimore në mijë EUR`;
+    $("pageSubtitle").textContent = `${periodLabel(analysis.period)} · ${state.compareMode === "custom" ? `compared with ${analysis.competitor.bank}` : `Top ${state.benchmarkGroup} benchmark`} · source values in EUR thousands`;
     $("competitorField").hidden = state.compareMode !== "custom";
 
     renderKpis(analysis);
@@ -992,7 +961,7 @@ globalThis.MSI_INITIAL_DATA = {"schemaVersion":1,"sourceFile":"01-Market-Share-D
       { name: comparisonName, color: COLORS[1], values: state.compareMode === "custom" ? analysis.competitorShareSeries : analysis.benchmarkSeries },
     ];
     renderLegend($("shareLegend"), shareSeries);
-    renderLineChart($("shareChart"), analysis.periods, shareSeries, (value) => formatShare(value, 1), `${analysis.dimension.name}: trendi i ${ratio ? "raportit" : "market share"}`);
+    renderLineChart($("shareChart"), analysis.periods, shareSeries, (value) => formatShare(value, 1), `${analysis.dimension.name}: ${ratio ? "ratio" : "market share"} trend`);
 
     const valueSeries = [
       { name: analysis.selected.bank, color: COLORS[0], values: analysis.selectedValueSeries },
@@ -1003,7 +972,7 @@ globalThis.MSI_INITIAL_DATA = {"schemaVersion":1,"sourceFile":"01-Market-Share-D
       analysis.periods,
       valueSeries,
       ratio ? (value) => formatShare(value, 1) : (value, axis) => axis ? `${numberFormat.format(value / 1000)}m` : formatMillions(value),
-      `${analysis.dimension.name}: trendi i ${ratio ? "raportit" : "vlerës absolute"}`,
+      `${analysis.dimension.name}: ${ratio ? "ratio" : "absolute value"} trend`,
     );
     renderSignal(analysis);
     renderInsights(analysis);
@@ -1020,13 +989,11 @@ globalThis.MSI_INITIAL_DATA = {"schemaVersion":1,"sourceFile":"01-Market-Share-D
   function applyUrlParams() {
     if (state.paramsApplied || typeof location === "undefined") return;
     const params = new URLSearchParams(location.search);
-    const bank = params.get("bank");
     const dimension = params.get("dimension");
     const period = parsePeriod(params.get("period"));
     const competitor = params.get("competitor");
     const compareMode = params.get("compareMode");
     const benchmarkGroup = Number(params.get("benchmarkGroup"));
-    if (state.data.banks.includes(bank)) state.bank = bank;
     if (state.data.dimensions.some((item) => item.name === dimension)) state.dimension = dimension;
     const dimensionData = getDimension(state.data, state.dimension);
     if (period && dimensionData.periods.includes(period)) state.period = period;
@@ -1090,7 +1057,7 @@ globalThis.MSI_INITIAL_DATA = {"schemaVersion":1,"sourceFile":"01-Market-Share-D
     setupFilters(resetPeriod);
     renderDashboard();
     const latest = state.data.dimensions.flatMap((dimension) => dimension.periods).sort().at(-1);
-    setStatus(`${periodLabel(latest)} · ${sourceMode === "central" ? "burim qendror" : sourceMode === "upload" ? "preview lokal" : "kopje e integruar"}`);
+    setStatus(`${periodLabel(latest)} · ${sourceMode === "central" ? "central source" : sourceMode === "upload" ? "local preview" : "embedded copy"}`);
   }
 
   function columnIndexFromReference(reference) {
@@ -1100,7 +1067,7 @@ globalThis.MSI_INITIAL_DATA = {"schemaVersion":1,"sourceFile":"01-Market-Share-D
 
   function xmlDocument(text) {
     const documentXml = new DOMParser().parseFromString(text, "application/xml");
-    if (documentXml.querySelector("parsererror")) throw new Error("Excel XML nuk mund të lexohet.");
+    if (documentXml.querySelector("parsererror")) throw new Error("The Excel XML could not be read.");
     return documentXml;
   }
 
@@ -1110,11 +1077,11 @@ globalThis.MSI_INITIAL_DATA = {"schemaVersion":1,"sourceFile":"01-Market-Share-D
   }
 
   async function parseXlsx(arrayBuffer, sourceFile = "Market-Share-Latest.xlsx") {
-    if (typeof JSZip === "undefined") throw new Error("Lexuesi XLSX nuk është ngarkuar.");
+    if (typeof JSZip === "undefined") throw new Error("The XLSX reader is not available.");
     const zip = await JSZip.loadAsync(arrayBuffer);
     const workbookFile = zip.file("xl/workbook.xml");
     const relsFile = zip.file("xl/_rels/workbook.xml.rels");
-    if (!workbookFile || !relsFile) throw new Error("Skedari nuk është një XLSX valid.");
+    if (!workbookFile || !relsFile) throw new Error("The selected file is not a valid XLSX workbook.");
     const [workbookText, relsText] = await Promise.all([workbookFile.async("text"), relsFile.async("text")]);
     const workbookXml = xmlDocument(workbookText);
     const relsXml = xmlDocument(relsText);
@@ -1124,13 +1091,13 @@ globalThis.MSI_INITIAL_DATA = {"schemaVersion":1,"sourceFile":"01-Market-Share-D
     });
     const sheetNode = Array.from(workbookXml.getElementsByTagName("sheet")).find((sheet) => cleanName(sheet.getAttribute("name")).toLowerCase() === "market share eur")
       || Array.from(workbookXml.getElementsByTagName("sheet")).find((sheet) => cleanName(sheet.getAttribute("name")).toLowerCase().includes("market share eur"));
-    if (!sheetNode) throw new Error("Mungon fleta 'Market Share EUR'.");
+    if (!sheetNode) throw new Error("The 'Market Share EUR' worksheet is missing.");
     const relationshipId = sheetNode.getAttribute("r:id") || sheetNode.getAttributeNS("http://schemas.openxmlformats.org/officeDocument/2006/relationships", "id");
     const target = relationships[relationshipId];
-    if (!target) throw new Error("Nuk u gjet fleta e të dhënave në XLSX.");
+    if (!target) throw new Error("The data worksheet could not be located in the XLSX file.");
     const normalizedTarget = target.startsWith("/") ? target.slice(1) : `xl/${target.replace(/^\.\//, "")}`;
     const sheetFile = zip.file(normalizedTarget.replace("xl/../", ""));
-    if (!sheetFile) throw new Error("XML i fletës 'Market Share EUR' mungon.");
+    if (!sheetFile) throw new Error("The XML for the 'Market Share EUR' worksheet is missing.");
 
     const sharedStrings = [];
     const sharedFile = zip.file("xl/sharedStrings.xml");
@@ -1198,7 +1165,7 @@ globalThis.MSI_INITIAL_DATA = {"schemaVersion":1,"sourceFile":"01-Market-Share-D
         sector: periodColumns.map(({ columnIndex }) => sectorRow && finite(Number(sectorRow[columnIndex])) ? Number(sectorRow[columnIndex]) : null),
       });
     });
-    if (!banks.length || !dimensions.length) throw new Error("Struktura e fletës 'Market Share EUR' nuk përputhet me modelin e pritur.");
+    if (!banks.length || !dimensions.length) throw new Error("The 'Market Share EUR' worksheet does not match the expected structure.");
     return {
       schemaVersion: 1,
       sourceFile,
@@ -1226,11 +1193,11 @@ globalThis.MSI_INITIAL_DATA = {"schemaVersion":1,"sourceFile":"01-Market-Share-D
     $("competitorFilter").addEventListener("change", (event) => { state.competitor = event.target.value; renderDashboard(); });
     $("benchmarkFilter").addEventListener("change", (event) => { state.benchmarkGroup = Number(event.target.value); renderDashboard(); });
     $("resetFilters").addEventListener("click", () => {
-      state.bank = state.data.banks.includes("RBKO") ? "RBKO" : state.data.banks[0];
+      state.bank = state.data.banks.includes("NLB") ? "NLB" : state.data.banks[0];
       state.dimension = state.data.dimensions.some((item) => item.name === "Assets") ? "Assets" : state.data.dimensions[0].name;
       state.period = null;
       state.compareMode = "custom";
-      state.competitor = state.data.banks.includes("BKT") ? "BKT" : state.data.banks.find((bank) => bank !== state.bank);
+      state.competitor = state.data.banks.includes("RBKO") ? "RBKO" : state.data.banks.find((bank) => bank !== state.bank);
       state.benchmarkGroup = 10;
       setupFilters(true);
       renderDashboard();
@@ -1238,14 +1205,14 @@ globalThis.MSI_INITIAL_DATA = {"schemaVersion":1,"sourceFile":"01-Market-Share-D
     $("excelUpload").addEventListener("change", async (event) => {
       const file = event.target.files?.[0];
       if (!file) return;
-      setStatus("Duke validuar Excel-in…", "");
+      setStatus("Validating Excel…", "");
       try {
         const payload = await parseXlsx(await file.arrayBuffer(), file.name);
         setData(payload, "upload", true);
-        showToast(`Preview u përditësua me ${file.name}. Burimi qendror nuk u ndryshua.`);
+        showToast(`Preview updated with ${file.name}. The central source was not changed.`);
       } catch (error) {
-        setStatus("Excel i pavlefshëm", "error");
-        showToast(error.message || "Excel-i nuk mund të lexohet.");
+        setStatus("Invalid Excel file", "error");
+        showToast(error.message || "The Excel file could not be read.");
       } finally {
         event.target.value = "";
       }
@@ -1284,19 +1251,19 @@ globalThis.MSI_INITIAL_DATA = {"schemaVersion":1,"sourceFile":"01-Market-Share-D
       setData(payload, "central", true);
     } catch (error) {
       console.warn("Central workbook fallback:", error);
-      showToast("Burimi qendror nuk u lexua; po përdoret kopja e integruar.");
+      showToast("The central source could not be loaded; the embedded copy is being used.");
     }
   }
 
   async function init() {
     bindEvents();
     try {
-      if (!globalThis.MSI_INITIAL_DATA) throw new Error("Mungon kopja fillestare e të dhënave.");
+      if (!globalThis.MSI_INITIAL_DATA) throw new Error("The initial embedded dataset is missing.");
       setData(globalThis.MSI_INITIAL_DATA, "embedded", true);
       await loadCentralWorkbook();
     } catch (error) {
-      setStatus("Gabim në të dhëna", "error");
-      showToast(error.message || "Dashboard-i nuk mund të inicializohet.");
+      setStatus("Data error", "error");
+      showToast(error.message || "The dashboard could not be initialised.");
     }
   }
 
