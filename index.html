@@ -15,12 +15,12 @@
   --line-soft: #e8ebed;
   --paper: #ffffff;
   --canvas: #f7f6f3;
-  --nlb-deep: #071f33;
-  --nlb-navy: #0a3658;
-  --nlb-blue: #005ca9;
-  --nlb-sky: #009fe3;
-  --nlb-teal: #00a19a;
-  --nlb-pale: #eaf4f9;
+  --nlb-deep: #16004d;
+  --nlb-navy: #230078;
+  --nlb-blue: #230078;
+  --nlb-sky: #5a39a6;
+  --nlb-teal: #7a61bd;
+  --nlb-pale: #f1eef8;
   --red: #a84250;
   --green: #126b56;
   --orange: #ba742d;
@@ -123,7 +123,7 @@ button, select { min-height: 39px; }
   text-decoration: none;
   transition: background .15s ease, border-color .15s ease, color .15s ease;
 }
-.button:focus-visible, select:focus-visible, summary:focus-visible { outline: 3px solid rgba(0,159,227,.24); outline-offset: 2px; }
+.button:focus-visible, select:focus-visible, summary:focus-visible { outline: 3px solid rgba(35,0,120,.22); outline-offset: 2px; }
 .button-primary { color: white; background: var(--nlb-blue); border-color: var(--nlb-blue); }
 .button-primary:hover { background: var(--nlb-navy); border-color: var(--nlb-navy); }
 .button-secondary { color: var(--nlb-deep); border-color: #b7c2c9; background: transparent; }
@@ -204,13 +204,98 @@ select:hover { border-color: #aeb9c0; }
 }
 .kpi-card:last-child { border-right: 0; }
 .kpi-card.featured { color: white; background: var(--nlb-navy); }
-.kpi-card.featured .kpi-label, .kpi-card.featured .kpi-note { color: #c8d6df; }
+.kpi-card.featured .kpi-label, .kpi-card.featured .kpi-note { color: #ddd3f3; }
 .kpi-label { color: var(--muted); font-size: 8px; font-weight: 850; letter-spacing: .14em; text-transform: uppercase; }
 .kpi-value { margin-top: 15px; font-size: clamp(27px, 2.35vw, 36px); font-weight: 650; letter-spacing: -.04em; }
 .kpi-note { margin-top: 6px; color: var(--muted); font-size: 10px; }
 .positive { color: var(--green) !important; }
 .negative { color: var(--red) !important; }
 .neutral { color: var(--muted) !important; }
+
+.decision-grid {
+  display: grid;
+  grid-template-columns: minmax(300px, .82fr) minmax(0, 1.45fr);
+  gap: 14px;
+  margin-top: 14px;
+}
+
+.target-card, .alerts-card { min-height: 265px; }
+.target-control { margin-top: 18px; }
+.target-control-label { display: flex; align-items: baseline; justify-content: space-between; gap: 18px; }
+.target-control-label label { color: var(--muted); font-size: 10px; font-weight: 750; }
+.target-control-label strong { color: var(--nlb-blue); font-size: 17px; }
+
+input[type="range"] {
+  width: 100%;
+  height: 4px;
+  margin: 13px 0 4px;
+  accent-color: var(--nlb-blue);
+  cursor: pointer;
+}
+
+.target-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 18px;
+  border-top: 1px solid var(--line-soft);
+  border-bottom: 1px solid var(--line-soft);
+}
+.target-metrics > div { padding: 13px 12px; border-right: 1px solid var(--line-soft); }
+.target-metrics > div:first-child { padding-left: 0; }
+.target-metrics > div:last-child { padding-right: 0; border-right: 0; }
+.target-metrics span { display: block; min-height: 24px; color: var(--muted); font-size: 8px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+.target-metrics strong { display: block; margin-top: 6px; color: var(--ink); font-size: 17px; letter-spacing: -.02em; }
+.target-note { margin: 12px 0 0; color: var(--muted); font-size: 9px; line-height: 1.45; }
+
+.alert-count {
+  padding: 5px 8px;
+  color: var(--nlb-blue);
+  border: 1px solid #cfc4e5;
+  border-radius: 999px;
+  background: #f4f1fa;
+  font-size: 9px;
+  font-weight: 800;
+}
+.alert-list { margin-top: 12px; }
+.alert-item { display: grid; grid-template-columns: auto 1fr; gap: 11px; padding: 12px 0; border-top: 1px solid var(--line-soft); }
+.alert-icon { width: 25px; height: 25px; display: grid; place-items: center; border-radius: 50%; background: #eef0f2; color: var(--muted); font-size: 10px; font-weight: 900; }
+.alert-item.risk .alert-icon { color: var(--red); background: #f8ecee; }
+.alert-item.opportunity .alert-icon { color: var(--green); background: #ebf5f1; }
+.alert-item.priority .alert-icon { color: var(--nlb-blue); background: #f0ecf8; }
+.alert-copy strong { display: block; color: var(--ink); font-size: 11px; }
+.alert-copy p { margin: 4px 0 0; color: var(--muted); font-size: 10px; line-height: 1.45; }
+
+.heatmap-card { margin-top: 14px; }
+.heatmap-header { align-items: flex-end; }
+.heatmap-filter { min-width: 190px; }
+.heatmap-filter > span { display: block; margin: 0 0 5px 1px; color: var(--muted); font-size: 8px; font-weight: 850; letter-spacing: .12em; text-transform: uppercase; }
+.heatmap-description { margin: 11px 0 0; color: var(--muted); font-size: 10px; }
+.heatmap-legend { display: flex; align-items: center; justify-content: flex-end; gap: 14px; margin-top: 10px; color: var(--muted); font-size: 9px; }
+.heatmap-legend span { display: inline-flex; align-items: center; gap: 5px; }
+.signal-dot { width: 7px; height: 7px; border-radius: 50%; background: #aab3ba; }
+.signal-dot.lead { background: var(--nlb-blue); }
+.signal-dot.accelerate { background: var(--green); }
+.signal-dot.defend { background: var(--orange); }
+.signal-dot.watch { background: var(--red); }
+.heatmap-wrap { max-height: 520px; margin-top: 8px; border-top: 1px solid var(--line); }
+.heatmap-table { min-width: 850px; }
+.heatmap-table thead { position: sticky; top: 0; z-index: 2; }
+.heatmap-table td { padding-top: 10px; padding-bottom: 10px; }
+.heat-dimension { font-weight: 720; color: var(--ink); }
+.heat-rank { display: inline-flex; min-width: 28px; height: 22px; align-items: center; justify-content: center; border: 1px solid var(--line); border-radius: 3px; background: white; font-weight: 800; }
+.heat-gap { min-width: 150px; }
+.heat-gap-label { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
+.heat-gap-label strong { color: var(--ink-soft); font-size: 10px; }
+.heat-gap-label span { color: var(--muted); font-size: 8px; }
+.heat-track { width: 100%; height: 4px; margin-top: 5px; overflow: hidden; background: #e6e8ea; }
+.heat-fill { height: 100%; background: var(--nlb-blue); }
+.decision-tag { display: inline-flex; min-width: 72px; justify-content: center; padding: 5px 7px; border-radius: 3px; font-size: 8px; font-weight: 850; letter-spacing: .08em; text-transform: uppercase; }
+.decision-tag.lead { color: white; background: var(--nlb-blue); }
+.decision-tag.accelerate { color: var(--green); background: #ebf5f1; }
+.decision-tag.defend { color: #8b561c; background: #faf2e8; }
+.decision-tag.watch { color: var(--red); background: #f8ecee; }
+.decision-tag.build, .decision-tag.hold { color: var(--muted); background: #eef0f2; }
+.heatmap-empty { padding: 30px !important; color: var(--muted); text-align: center; }
 
 .dashboard-grid {
   display: grid;
@@ -246,19 +331,19 @@ select:hover { border-color: #aeb9c0; }
 .legend-dot { width: 8px; height: 8px; border-radius: 1px; }
 
 .signal-card { color: white; background: var(--nlb-deep); border-color: var(--nlb-deep); box-shadow: none; }
-.signal-card .card-kicker { color: #63d0cb !important; }
+.signal-card .card-kicker { color: #c8b9ef !important; }
 .signal-card h2 { margin: 6px 0 20px; font-family: Georgia, "Times New Roman", serif; font-size: 21px; font-weight: 600; }
 .signal-card .signal-value { margin: 11px 0 3px; font-size: 36px; font-weight: 650; letter-spacing: -.04em; }
-.signal-card .signal-label { color: #b6c7d2; font-size: 10px; }
+.signal-card .signal-label { color: #d4ccec; font-size: 10px; }
 .signal-card .signal-track { height: 5px; margin: 23px 0 14px; overflow: hidden; background: rgba(255,255,255,.15); }
 .signal-card .signal-fill { height: 100%; background: var(--nlb-teal); }
 .signal-card .signal-row { display: flex; justify-content: space-between; gap: 12px; padding: 12px 0; border-top: 1px solid rgba(255,255,255,.12); }
-.signal-card .signal-row span { color: #b6c7d2; font-size: 10px; }
+.signal-card .signal-row span { color: #d4ccec; font-size: 10px; }
 .signal-card .signal-row strong { font-size: 11px; }
 
 .insight-list { margin: 15px 0 0; padding: 0; list-style: none; counter-reset: insight; }
 .insight-list li { position: relative; padding: 13px 0 13px 39px; border-top: 1px solid var(--line-soft); color: var(--ink-soft); line-height: 1.52; font-size: 11px; }
-.insight-list li::before { counter-increment: insight; content: counter(insight); position: absolute; left: 0; top: 12px; width: 23px; height: 23px; display: grid; place-items: center; color: var(--nlb-blue); border: 1px solid #a9cce2; border-radius: 50%; background: white; font-family: Georgia, "Times New Roman", serif; font-size: 10px; font-weight: 700; }
+.insight-list li::before { counter-increment: insight; content: counter(insight); position: absolute; left: 0; top: 12px; width: 23px; height: 23px; display: grid; place-items: center; color: var(--nlb-blue); border: 1px solid #b9a8df; border-radius: 50%; background: white; font-family: Georgia, "Times New Roman", serif; font-size: 10px; font-weight: 700; }
 
 .table-card { padding-bottom: 9px; }
 .table-wrap { overflow-x: auto; margin: 13px -5px 0; }
@@ -266,9 +351,9 @@ table { width: 100%; border-collapse: collapse; min-width: 800px; }
 th { padding: 11px 12px; color: #65737e; background: #f1f3f3; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); font-size: 8px; letter-spacing: .1em; text-align: left; text-transform: uppercase; }
 td { padding: 11px 12px; border-bottom: 1px solid var(--line-soft); color: #304657; font-size: 11px; }
 tr:last-child td { border-bottom: 0; }
-tr.selected-row td { background: #e8f2f7; }
+tr.selected-row td { background: #f0ecf8; }
 tr.selected-row td:first-child { box-shadow: inset 3px 0 0 var(--nlb-blue); }
-tr.competitor-row td { background: #f0f7f6; }
+tr.competitor-row td { background: #f1f3f4; }
 tr.competitor-row td:first-child { box-shadow: inset 3px 0 0 var(--nlb-teal); }
 .numeric { text-align: right; }
 .bank-cell { display: flex; align-items: center; gap: 9px; font-weight: 750; color: var(--ink); }
@@ -319,6 +404,7 @@ details p { line-height: 1.55; }
   .filter-rail { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .kpi-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .kpi-card { border-bottom: 1px solid var(--line-soft); }
+  .decision-grid { grid-template-columns: 1fr; }
   .dashboard-grid { grid-template-columns: minmax(0, 1fr) minmax(280px, .65fr); }
   .dashboard-grid .span-2, .ranking-grid .span-2 { grid-column: span 1; }
   .data-card { grid-template-columns: 1fr 1.4fr; }
@@ -335,6 +421,9 @@ details p { line-height: 1.55; }
   .filter-rail { grid-template-columns: 1fr 1fr; }
   .dimension-filter { grid-column: 1 / -1; }
   .kpi-grid { grid-template-columns: 1fr 1fr; }
+  .target-metrics { grid-template-columns: 1fr; }
+  .target-metrics > div { padding: 11px 0; border-right: 0; border-bottom: 1px solid var(--line-soft); }
+  .target-metrics > div:last-child { border-bottom: 0; }
   .dashboard-grid { grid-template-columns: 1fr; }
   .data-card { grid-template-columns: 1fr; }
   .data-card details { grid-column: auto; }
@@ -348,6 +437,9 @@ details p { line-height: 1.55; }
   .card { padding: 17px; }
   .legend { justify-content: flex-start; }
   .card-header, .heading-actions { align-items: flex-start; flex-direction: column; }
+  .heatmap-header { align-items: stretch; }
+  .heatmap-filter { width: 100%; }
+  .heatmap-legend { justify-content: flex-start; flex-wrap: wrap; }
   .executive-context { width: 100%; }
 }
 
@@ -425,6 +517,76 @@ details p { line-height: 1.55; }
       </section>
 
       <section class="kpi-grid" id="kpiGrid" aria-label="Key performance indicators"></section>
+
+      <section class="decision-grid" aria-label="Decision intelligence">
+        <article class="card target-card">
+          <div class="card-header">
+            <div><p class="card-kicker">VOLUME TO TARGET</p><h2>Growth required</h2></div>
+            <span class="unit-badge" id="targetPeriod">Latest period</span>
+          </div>
+          <div class="target-control" id="targetControl">
+            <div class="target-control-label">
+              <label for="targetShareInput">Target market share</label>
+              <strong id="targetShareValue">20.0%</strong>
+            </div>
+            <input id="targetShareInput" type="range" min="5" max="35" step="0.5" value="20" />
+          </div>
+          <div class="target-metrics">
+            <div><span>Additional volume</span><strong id="targetGapOutput">—</strong></div>
+            <div><span>Required growth</span><strong id="targetGrowthOutput">—</strong></div>
+            <div><span>Gap to sector leader</span><strong id="leaderGapOutput">—</strong></div>
+          </div>
+          <p class="target-note" id="targetNote">Assumes other banks remain unchanged.</p>
+        </article>
+
+        <article class="card alerts-card">
+          <div class="card-header">
+            <div><p class="card-kicker">EARLY-WARNING SYSTEM</p><h2>Signals requiring attention</h2></div>
+            <span class="alert-count" id="alertCount">0 signals</span>
+          </div>
+          <div class="alert-list" id="alertList"></div>
+        </article>
+      </section>
+
+      <section class="card heatmap-card">
+        <div class="card-header heatmap-header">
+          <div>
+            <p class="card-kicker">PORTFOLIO OPPORTUNITY MAP</p>
+            <h2 id="heatmapTitle">NLB opportunity heatmap</h2>
+          </div>
+          <label class="heatmap-filter">
+            <span>View</span>
+            <select id="heatmapMode">
+              <option value="all">All dimensions</option>
+              <option value="opportunity">Growth opportunities</option>
+              <option value="watch">Watchlist</option>
+              <option value="lead">Leadership positions</option>
+            </select>
+          </label>
+        </div>
+        <p class="heatmap-description" id="heatmapDescription">Cross-portfolio view of rank, momentum and the gap to the sector leader.</p>
+        <div class="heatmap-legend" aria-label="Signal legend">
+          <span><i class="signal-dot lead"></i>Lead</span>
+          <span><i class="signal-dot accelerate"></i>Accelerate</span>
+          <span><i class="signal-dot defend"></i>Defend</span>
+          <span><i class="signal-dot watch"></i>Watch</span>
+        </div>
+        <div class="table-wrap heatmap-wrap">
+          <table class="heatmap-table">
+            <thead>
+              <tr>
+                <th scope="col">Dimension</th>
+                <th scope="col" class="numeric">Rank</th>
+                <th scope="col" class="numeric">Share / ratio</th>
+                <th scope="col" class="numeric">Δ 3 periods</th>
+                <th scope="col">Gap to leader</th>
+                <th scope="col">Decision signal</th>
+              </tr>
+            </thead>
+            <tbody id="heatmapBody"></tbody>
+          </table>
+        </div>
+      </section>
 
       <section class="dashboard-grid dashboard-grid-main">
         <article class="card chart-card span-2">
@@ -520,7 +682,7 @@ globalThis.MSI_INITIAL_DATA = {"schemaVersion":1,"sourceFile":"01-Market-Share-D
 (function () {
   "use strict";
 
-  const COLORS = ["#005ca9", "#00a19a", "#009fe3", "#6f7f8f"];
+  const COLORS = ["#230078", "#667686", "#8a6fc0", "#a16a3a"];
   const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
   const FLOW_METRICS = new Set([
     "Net profit",
@@ -543,6 +705,8 @@ globalThis.MSI_INITIAL_DATA = {"schemaVersion":1,"sourceFile":"01-Market-Share-D
     compareMode: "custom",
     competitor: "RBKO",
     benchmarkGroup: 10,
+    targetShare: 20,
+    heatmapMode: "all",
     paramsApplied: false,
   };
 
@@ -741,6 +905,157 @@ globalThis.MSI_INITIAL_DATA = {"schemaVersion":1,"sourceFile":"01-Market-Share-D
     };
   }
 
+  function metricAt(dimension, bank, index) {
+    return dimension.metricType === "ratio" ? dimension.series[bank]?.[index] ?? null : shareAt(dimension, bank, index);
+  }
+
+  function periodIndexAtOrBefore(periods, referencePeriod) {
+    if (!periods.length) return -1;
+    if (!referencePeriod) return periods.length - 1;
+    const exact = periods.indexOf(referencePeriod);
+    if (exact >= 0) return exact;
+    for (let index = periods.length - 1; index >= 0; index -= 1) {
+      if (periods[index] <= referencePeriod) return index;
+    }
+    return 0;
+  }
+
+  function portfolioSnapshot(data, bank, referencePeriod) {
+    return data.dimensions.map((dimension) => {
+      const periodIndex = periodIndexAtOrBefore(dimension.periods, referencePeriod);
+      if (periodIndex < 0) return null;
+      const baseIndex = Math.max(0, periodIndex - 3);
+      const rows = data.banks.map((item) => ({ bank: item, metric: metricAt(dimension, item, periodIndex) }))
+        .filter((row) => finite(row.metric))
+        .sort((a, b) => b.metric - a.metric);
+      const selectedIndex = rows.findIndex((row) => row.bank === bank);
+      if (selectedIndex < 0) return null;
+      const selected = rows[selectedIndex];
+      const previousMetric = metricAt(dimension, bank, baseIndex);
+      const movement = finite(previousMetric) ? selected.metric - previousMetric : null;
+      const leader = rows[0];
+      const gap = leader.bank === bank ? 0 : leader.metric - selected.metric;
+      let signal = "hold";
+      if (selectedIndex === 0 && (!finite(movement) || movement >= 0)) signal = "lead";
+      else if (finite(movement) && movement <= -.0025) signal = "watch";
+      else if (selectedIndex <= 1 && finite(movement) && movement < 0) signal = "defend";
+      else if (selectedIndex > 0 && finite(movement) && movement >= .0025) signal = "accelerate";
+      else if (selectedIndex >= 4 && finite(movement) && movement > 0) signal = "build";
+      return {
+        dimension: dimension.name,
+        metricType: dimension.metricType,
+        period: dimension.periods[periodIndex],
+        rank: selectedIndex + 1,
+        bankCount: rows.length,
+        metric: selected.metric,
+        movement,
+        gap: Math.max(0, gap),
+        leader: leader.bank,
+        signal,
+      };
+    }).filter(Boolean);
+  }
+
+  function targetScenario(analysis, targetPercent) {
+    if (analysis.dimension.metricType === "ratio") return null;
+    const target = Number(targetPercent) / 100;
+    if (!finite(target) || target <= 0 || target >= 1 || !finite(analysis.currentSector) || !finite(analysis.selected.value)) return null;
+    const rawRequired = (target * analysis.currentSector - analysis.selected.value) / (1 - target);
+    const requiredVolume = Math.max(0, rawRequired);
+    const leader = analysis.rows[0];
+    const leaderGap = leader && leader.bank !== analysis.selected.bank && finite(leader.value)
+      ? Math.max(0, leader.value - analysis.selected.value)
+      : 0;
+    return {
+      target,
+      requiredVolume,
+      requiredGrowth: analysis.selected.value > 0 ? requiredVolume / analysis.selected.value : null,
+      leader,
+      leaderGap,
+      alreadyAchieved: rawRequired <= 0,
+    };
+  }
+
+  function buildDecisionAlerts(analysis) {
+    const ratio = analysis.dimension.metricType === "ratio";
+    const currentIndex = analysis.periodIndex;
+    const baseIndex = Math.max(0, currentIndex - 3);
+    const selectedNow = ratio ? analysis.selected.value : analysis.selected.share;
+    const selectedBase = metricAt(analysis.dimension, analysis.selected.bank, baseIndex);
+    const competitorNow = ratio ? analysis.competitor.value : analysis.competitor.share;
+    const competitorBase = metricAt(analysis.dimension, analysis.competitor.bank, baseIndex);
+    const selectedMovement = finite(selectedNow) && finite(selectedBase) ? selectedNow - selectedBase : null;
+    const competitorMovement = finite(competitorNow) && finite(competitorBase) ? competitorNow - competitorBase : null;
+    const alerts = [];
+
+    if (finite(selectedMovement)) {
+      alerts.push(selectedMovement < 0 ? {
+        severity: "risk",
+        title: `${ratio ? "Ratio" : "Market share"} deterioration`,
+        text: `${analysis.selected.bank} declined ${formatDeltaPp(Math.abs(selectedMovement))} over the last three reported periods. Validate the commercial drivers and recovery plan.`,
+      } : {
+        severity: "opportunity",
+        title: "Positive three-period momentum",
+        text: `${analysis.selected.bank} gained ${formatDeltaPp(selectedMovement)} over the last three reported periods. Protect the drivers behind the improvement.`,
+      });
+    }
+
+    if (finite(selectedMovement) && finite(competitorMovement)) {
+      const momentumGap = competitorMovement - selectedMovement;
+      if (momentumGap > .001) {
+        alerts.push({
+          severity: "risk",
+          title: `${analysis.competitor.bank} is gaining faster`,
+          text: `Competitor momentum is ${formatDeltaPp(momentumGap)} stronger over the same period. Review pricing, acquisition and retention response.`,
+        });
+      } else if (momentumGap < -.001) {
+        alerts.push({
+          severity: "opportunity",
+          title: "Momentum ahead of comparator",
+          text: `${analysis.selected.bank} is outperforming ${analysis.competitor.bank} by ${formatDeltaPp(Math.abs(momentumGap))} over three periods.`,
+        });
+      } else {
+        alerts.push({
+          severity: "priority",
+          title: "Comparator momentum broadly aligned",
+          text: `${analysis.selected.bank} and ${analysis.competitor.bank} are moving within ${formatDeltaPp(Math.abs(momentumGap))} over three periods.`,
+        });
+      }
+    }
+
+    const follower = analysis.rows[analysis.selected.rank];
+    if (follower) {
+      const selectedMetric = ratio ? analysis.selected.value : analysis.selected.share;
+      const followerMetric = ratio ? follower.value : follower.share;
+      const buffer = finite(selectedMetric) && finite(followerMetric) ? selectedMetric - followerMetric : null;
+      if (finite(buffer) && buffer < .0075) {
+        alerts.push({
+          severity: "risk",
+          title: `Rank #${analysis.selected.rank} is within reach of ${follower.bank}`,
+          text: `The position buffer is only ${formatDeltaPp(buffer)}. Prioritise defensive actions in this dimension.`,
+        });
+      }
+    }
+
+    if (analysis.selected.rank > 1 && analysis.rows[0]) {
+      alerts.push({
+        severity: "priority",
+        title: `Leadership gap to ${analysis.rows[0].bank}`,
+        text: ratio
+          ? `${formatDeltaPp(analysis.rows[0].value - analysis.selected.value)} separates ${analysis.selected.bank} from the sector leader.`
+          : `${formatDeltaPp(analysis.rows[0].share - analysis.selected.share)} and ${formatMillions(analysis.rows[0].value - analysis.selected.value)} separate ${analysis.selected.bank} from #1.`,
+      });
+    } else {
+      alerts.push({
+        severity: "priority",
+        title: "Sector leadership position",
+        text: `${analysis.selected.bank} is ranked #1. Monitor the buffer to the nearest competitor and defend profitable share.`,
+      });
+    }
+
+    return alerts.slice(0, 4);
+  }
+
   const numberFormat = new Intl.NumberFormat("en-GB", { maximumFractionDigits: 1 });
   const integerFormat = new Intl.NumberFormat("en-GB", { maximumFractionDigits: 0 });
 
@@ -802,6 +1117,86 @@ globalThis.MSI_INITIAL_DATA = {"schemaVersion":1,"sourceFile":"01-Market-Share-D
         <div class="kpi-value${finite(card.delta) && !card.featured ? ` ${deltaClass(card.delta)}` : ""}">${escapeHtml(card.value)}</div>
         <div class="kpi-note${finite(card.delta) && card.featured ? ` ${card.delta >= 0 ? "" : ""}` : ""}">${escapeHtml(card.note)}</div>
       </article>`).join("");
+  }
+
+  function renderTargetScenario(analysis) {
+    const slider = $("targetShareInput");
+    slider.value = String(state.targetShare);
+    $("targetShareValue").textContent = `${Number(state.targetShare).toFixed(1)}%`;
+    $("targetPeriod").textContent = periodLabel(analysis.period);
+    const scenario = targetScenario(analysis, state.targetShare);
+    if (!scenario) {
+      $("targetControl").hidden = true;
+      $("targetGapOutput").textContent = "Not applicable";
+      $("targetGrowthOutput").textContent = "—";
+      const leader = analysis.rows[0];
+      $("leaderGapOutput").textContent = leader && leader.bank !== analysis.selected.bank
+        ? formatDeltaPp(leader.value - analysis.selected.value)
+        : "Leader";
+      $("targetNote").textContent = "Target-share simulation is available for value-based dimensions.";
+      return;
+    }
+
+    $("targetControl").hidden = false;
+    $("targetGapOutput").textContent = scenario.alreadyAchieved ? "Achieved" : formatMillions(scenario.requiredVolume);
+    $("targetGrowthOutput").textContent = scenario.alreadyAchieved ? "0.0%" : formatGrowth(scenario.requiredGrowth);
+    $("leaderGapOutput").textContent = scenario.leaderGap > 0 ? formatMillions(scenario.leaderGap) : "Leader";
+    $("targetNote").textContent = scenario.alreadyAchieved
+      ? `${analysis.selected.bank} is already above the selected market-share target.`
+      : `Assumes other banks remain unchanged. Overtaking ${scenario.leader?.bank || "the leader"} requires ${formatMillions(scenario.leaderGap)} if the leader remains flat.`;
+  }
+
+  function renderDecisionAlerts(analysis) {
+    const alerts = buildDecisionAlerts(analysis);
+    $("alertCount").textContent = `${alerts.length} signal${alerts.length === 1 ? "" : "s"}`;
+    const icons = { risk: "!", opportunity: "↑", priority: "◆" };
+    $("alertList").innerHTML = alerts.map((alert) => `
+      <div class="alert-item ${escapeHtml(alert.severity)}">
+        <span class="alert-icon" aria-hidden="true">${icons[alert.severity] || "•"}</span>
+        <div class="alert-copy"><strong>${escapeHtml(alert.title)}</strong><p>${escapeHtml(alert.text)}</p></div>
+      </div>`).join("");
+  }
+
+  function renderOpportunityHeatmap() {
+    const signalLabels = {
+      lead: "Lead",
+      accelerate: "Accelerate",
+      defend: "Defend",
+      watch: "Watch",
+      build: "Build",
+      hold: "Hold",
+    };
+    const signalPriority = { watch: 0, defend: 1, accelerate: 2, build: 3, lead: 4, hold: 5 };
+    let rows = portfolioSnapshot(state.data, state.bank, state.period);
+    if (state.heatmapMode === "opportunity") rows = rows.filter((row) => ["accelerate", "build"].includes(row.signal));
+    if (state.heatmapMode === "watch") rows = rows.filter((row) => ["watch", "defend"].includes(row.signal));
+    if (state.heatmapMode === "lead") rows = rows.filter((row) => row.signal === "lead");
+    rows.sort((a, b) => (signalPriority[a.signal] - signalPriority[b.signal])
+      || (Math.abs(b.movement || 0) - Math.abs(a.movement || 0))
+      || (a.rank - b.rank));
+
+    $("heatmapMode").value = state.heatmapMode;
+    $("heatmapTitle").textContent = `${state.bank} opportunity heatmap`;
+    $("heatmapDescription").textContent = `${periodLabel(state.period)} portfolio view · ${rows.length} of ${state.data.dimensions.length} dimensions shown · movement compares the last three reported periods.`;
+    if (!rows.length) {
+      $("heatmapBody").innerHTML = '<tr><td colspan="6" class="heatmap-empty">No dimensions match this decision view.</td></tr>';
+      return;
+    }
+    const maxGap = Math.max(...rows.map((row) => row.gap || 0), .0001);
+    $("heatmapBody").innerHTML = rows.map((row) => {
+      const gapWidth = Math.min(100, (row.gap || 0) / maxGap * 100);
+      return `<tr>
+        <td><span class="heat-dimension">${escapeHtml(row.dimension)}</span></td>
+        <td class="numeric"><span class="heat-rank">#${row.rank}</span></td>
+        <td class="numeric">${escapeHtml(formatShare(row.metric, row.metricType === "ratio" ? 1 : 2))}</td>
+        <td class="numeric ${deltaClass(row.movement)}">${escapeHtml(formatDeltaPp(row.movement))}</td>
+        <td class="heat-gap">
+          <div class="heat-gap-label"><strong>${escapeHtml(formatDeltaPp(row.gap))}</strong><span>${escapeHtml(row.leader)}</span></div>
+          <div class="heat-track"><div class="heat-fill" style="width:${gapWidth.toFixed(1)}%"></div></div>
+        </td>
+        <td><span class="decision-tag ${escapeHtml(row.signal)}">${escapeHtml(signalLabels[row.signal] || row.signal)}</span></td>
+      </tr>`;
+    }).join("");
   }
 
   function renderLegend(element, series) {
@@ -960,6 +1355,9 @@ globalThis.MSI_INITIAL_DATA = {"schemaVersion":1,"sourceFile":"01-Market-Share-D
     $("competitorField").hidden = state.compareMode !== "custom";
 
     renderKpis(analysis);
+    renderTargetScenario(analysis);
+    renderDecisionAlerts(analysis);
+    renderOpportunityHeatmap();
     const ratio = analysis.dimension.metricType === "ratio";
     const comparisonName = state.compareMode === "custom" ? analysis.competitor.bank : `Top ${state.benchmarkGroup} avg`;
     const shareSeries = ratio ? [
@@ -1208,6 +1606,8 @@ globalThis.MSI_INITIAL_DATA = {"schemaVersion":1,"sourceFile":"01-Market-Share-D
       state.compareMode = "custom";
       state.competitor = state.data.banks.includes("RBKO") ? "RBKO" : state.data.banks.find((bank) => bank !== state.bank);
       state.benchmarkGroup = 10;
+      state.targetShare = 20;
+      state.heatmapMode = "all";
       setupFilters(true);
       renderDashboard();
     });
@@ -1225,6 +1625,14 @@ globalThis.MSI_INITIAL_DATA = {"schemaVersion":1,"sourceFile":"01-Market-Share-D
       } finally {
         event.target.value = "";
       }
+    });
+    $("targetShareInput").addEventListener("input", (event) => {
+      state.targetShare = Number(event.target.value);
+      renderTargetScenario(analyze(state.data, state));
+    });
+    $("heatmapMode").addEventListener("change", (event) => {
+      state.heatmapMode = event.target.value;
+      renderOpportunityHeatmap();
     });
     $("exportCsv").addEventListener("click", exportRankingCsv);
   }
@@ -1277,7 +1685,20 @@ globalThis.MSI_INITIAL_DATA = {"schemaVersion":1,"sourceFile":"01-Market-Share-D
   }
 
   if (typeof module !== "undefined" && module.exports) {
-    module.exports = { analyze, parsePeriod, periodLabel, normalizeData, extractDatasetFromRows, growthRate, shareAt, sectorAt };
+    module.exports = {
+      analyze,
+      parsePeriod,
+      periodLabel,
+      normalizeData,
+      extractDatasetFromRows,
+      growthRate,
+      shareAt,
+      sectorAt,
+      metricAt,
+      portfolioSnapshot,
+      targetScenario,
+      buildDecisionAlerts,
+    };
   }
   if (typeof document !== "undefined") {
     document.addEventListener("DOMContentLoaded", init);
