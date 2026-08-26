@@ -451,6 +451,152 @@ details p { line-height: 1.55; }
   .card, .kpi-grid { box-shadow: none; break-inside: avoid; }
 }
 
+/* Executive workspace: three focused decision views */
+.topbar {
+  color: #fff;
+  background: linear-gradient(112deg, #16004d 0%, #230078 62%, #35128f 100%);
+  border-bottom: 0;
+  box-shadow: 0 10px 30px rgba(22, 0, 77, .16);
+}
+.topbar-inner { min-height: 72px; }
+.brand-mark, .brand strong { color: #fff; }
+.brand-copy { border-left-color: rgba(255,255,255,.26); }
+.app-nav {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px;
+  border: 1px solid rgba(255,255,255,.16);
+  border-radius: 10px;
+  background: rgba(255,255,255,.08);
+}
+.view-tab {
+  min-height: 36px;
+  padding: 8px 15px;
+  color: rgba(255,255,255,.72);
+  border: 0;
+  border-radius: 7px;
+  background: transparent;
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .02em;
+}
+.view-tab:hover { color: #fff; background: rgba(255,255,255,.09); }
+.view-tab.active { color: var(--nlb-deep); background: #fff; box-shadow: 0 5px 16px rgba(0,0,0,.14); }
+.topbar .source-pill { color: rgba(255,255,255,.72); }
+.topbar .button-primary { color: var(--nlb-deep); background: #fff; border-color: #fff; }
+.topbar .button-primary:hover { background: #f0ecfb; border-color: #f0ecfb; }
+
+.compact-heading { padding: 34px 2px 23px; }
+.compact-heading h1 { margin: 0 0 8px; font-size: clamp(32px, 3.2vw, 48px); }
+.view-panel { display: none; }
+.view-panel.active { display: block; animation: view-enter .22s ease-out; }
+@keyframes view-enter { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: none; } }
+
+.view-toolbar {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(150px, 1fr)) auto;
+  gap: 12px;
+  margin: 0 0 18px;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: rgba(255,255,255,.94);
+  box-shadow: var(--shadow);
+}
+.view-toolbar.three { grid-template-columns: repeat(3, minmax(170px, 1fr)) auto; }
+.view-toolbar label { display: grid; gap: 6px; }
+.view-toolbar label > span { color: var(--muted); font-size: 9px; font-weight: 850; letter-spacing: .1em; text-transform: uppercase; }
+.view-toolbar select {
+  width: 100%;
+  padding: 0 36px 0 12px;
+  color: var(--ink);
+  border: 1px solid #cdd4d9;
+  border-radius: 6px;
+  background: #fff;
+}
+.view-toolbar .button { align-self: end; }
+
+.executive-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(280px, .82fr);
+  gap: 18px;
+  margin: 18px 0;
+}
+.executive-grid.equal { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.full-span { grid-column: 1 / -1; }
+.section-space { margin-top: 18px; }
+.card { border-radius: 10px; }
+.card-header h2 { font-family: Georgia, "Times New Roman", serif; font-size: 21px; font-weight: 600; }
+.readout-card {
+  color: #fff;
+  border: 0;
+  background: linear-gradient(145deg, #16004d, #2f0a86);
+  box-shadow: 0 18px 44px rgba(22, 0, 77, .2);
+}
+.readout-card .card-kicker { color: #bdaee5 !important; }
+.readout-card h2 { color: #fff; }
+.readout-list { display: grid; gap: 0; margin: 14px 0 0; padding: 0; list-style: none; }
+.readout-list li { padding: 12px 0; color: rgba(255,255,255,.84); border-top: 1px solid rgba(255,255,255,.14); font-size: 11px; line-height: 1.55; }
+.readout-list strong { color: #fff; }
+
+.kpi-grid.executive-kpis { grid-template-columns: repeat(6, minmax(0, 1fr)); border-radius: 10px; overflow: hidden; }
+.kpi-grid.executive-kpis .kpi-card:nth-child(5) { border-right: 1px solid var(--line); }
+.kpi-grid.executive-kpis .kpi-card:last-child { border-right: 0; }
+.kpi-card .kpi-value { letter-spacing: -.035em; }
+
+.table-card .table-wrap { max-height: 430px; }
+.compact-table .table-wrap { max-height: 520px; }
+.compact-table th { position: sticky; top: 0; z-index: 2; background: #fafafa; }
+.compact-table td, .compact-table th { padding: 11px 12px; }
+.bank-full { display: flex; align-items: center; gap: 9px; font-weight: 750; }
+.bank-code { display: inline-grid; place-items: center; width: 34px; height: 26px; color: var(--nlb-blue); border-radius: 6px; background: var(--nlb-pale); font-size: 9px; font-weight: 900; }
+.metric-name strong { display: block; }
+.metric-name small { display: block; margin-top: 3px; color: var(--muted); }
+.lead-chip { display: inline-flex; padding: 4px 8px; border-radius: 999px; color: var(--nlb-blue); background: var(--nlb-pale); font-size: 9px; font-weight: 850; }
+.lead-chip.tie { color: var(--muted); background: #eef0f1; }
+
+.compare-scorecards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin-bottom: 18px; }
+.bank-scorecard { position: relative; overflow: hidden; }
+.bank-scorecard::before { content: ""; position: absolute; inset: 0 auto 0 0; width: 4px; background: var(--nlb-blue); }
+.bank-scorecard.competitor::before { background: #8a6fc0; }
+.bank-scorecard h2 { margin: 3px 0 4px; font-family: Georgia, "Times New Roman", serif; font-size: 28px; }
+.score-rank { color: var(--muted); font-size: 10px; }
+.score-metrics { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 10px; margin-top: 20px; }
+.score-metric { padding-top: 10px; border-top: 1px solid var(--line-soft); }
+.score-metric span { display: block; color: var(--muted); font-size: 8px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+.score-metric strong { display: block; margin-top: 5px; font-size: 16px; }
+.compare-callout { margin: 0 0 18px; padding: 15px 18px; color: #fff; border-radius: 10px; background: linear-gradient(105deg, #230078, #5131a4); box-shadow: 0 14px 34px rgba(35,0,120,.16); font-size: 12px; line-height: 1.55; }
+.compare-callout strong { font-size: 14px; }
+
+@media (max-width: 1120px) {
+  .topbar-inner { flex-wrap: wrap; }
+  .app-nav { order: 3; width: 100%; }
+  .view-tab { flex: 1; }
+  .view-toolbar, .view-toolbar.three { grid-template-columns: repeat(2, minmax(150px, 1fr)); }
+  .kpi-grid.executive-kpis { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .kpi-grid.executive-kpis .kpi-card:nth-child(3) { border-right: 0; }
+  .kpi-grid.executive-kpis .kpi-card:nth-child(-n+3) { border-bottom: 1px solid var(--line); }
+}
+@media (max-width: 780px) {
+  .executive-grid, .executive-grid.equal, .compare-scorecards { grid-template-columns: 1fr; }
+  .score-metrics { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .view-toolbar, .view-toolbar.three { grid-template-columns: 1fr; }
+  .kpi-grid.executive-kpis { grid-template-columns: 1fr 1fr; }
+  .kpi-grid.executive-kpis .kpi-card { border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .kpi-grid.executive-kpis .kpi-card:nth-child(even) { border-right: 0; }
+  .compact-heading { align-items: flex-start; flex-direction: column; }
+}
+@media (max-width: 520px) {
+  .brand-copy { display: none; }
+  .app-nav { overflow-x: auto; }
+  .view-tab { white-space: nowrap; }
+  .kpi-grid.executive-kpis { grid-template-columns: 1fr; }
+  .kpi-grid.executive-kpis .kpi-card { border-right: 0; }
+  .score-metrics { grid-template-columns: 1fr 1fr; }
+}
+
     </style>
   </head>
   <body>
@@ -464,6 +610,11 @@ details p { line-height: 1.55; }
             <strong>Market Share Intelligence</strong>
           </div>
         </div>
+        <nav class="app-nav" aria-label="Primary analysis">
+          <button class="view-tab active" type="button" data-view="market">Market Share</button>
+          <button class="view-tab" type="button" data-view="profitability">Profitability</button>
+          <button class="view-tab" type="button" data-view="compare">Compare</button>
+        </nav>
         <div class="topbar-actions">
           <button class="source-pill" id="sourceStatus" type="button" aria-label="Data source status">
             <span class="status-dot"></span><span>Loading data…</span>
@@ -477,183 +628,140 @@ details p { line-height: 1.55; }
     </header>
 
     <main id="main-content">
-      <section class="page-heading">
+      <section class="page-heading compact-heading">
         <div class="heading-copy">
-          <p class="eyebrow">COMPETITIVE MARKET INTELLIGENCE</p>
-          <h1 id="pageTitle">NLB · Assets</h1>
+          <h1 id="pageTitle">NLB Market Share Intelligence</h1>
           <p id="pageSubtitle">Preparing analysis…</p>
         </div>
         <div class="heading-actions">
-          <div class="executive-context" aria-label="Primary bank">
-            <span>PRIMARY BANK</span>
-            <strong>NLB</strong>
-            <small><i></i> Public banking association data</small>
-          </div>
-          <button class="button button-secondary" id="exportCsv" type="button">Export ranking CSV</button>
+          <button class="button button-secondary" id="exportCsv" type="button">Export current view</button>
         </div>
       </section>
 
-      <section class="filter-rail" aria-label="Analysis filters">
-        <label><span>Bank</span><select id="bankFilter"></select></label>
-        <label><span>Period</span><select id="periodFilter"></select></label>
-        <label class="dimension-filter"><span>Dimension</span><select id="dimensionFilter"></select></label>
-        <label>
-          <span>Comparison</span>
-          <select id="compareModeFilter">
-            <option value="custom">Specific competitor</option>
-            <option value="benchmark">Peer benchmark</option>
-          </select>
-        </label>
-        <label id="competitorField"><span>Competitor</span><select id="competitorFilter"></select></label>
-        <label id="benchmarkField">
-          <span>Peer group</span>
-          <select id="benchmarkFilter">
-            <option value="10">Top 10</option>
-            <option value="5">Top 5</option>
-            <option value="3">Top 3</option>
-          </select>
-        </label>
-        <button class="button button-quiet" id="resetFilters" type="button">Reset</button>
-      </section>
+      <section class="view-panel active" id="view-market" data-view-panel="market">
+        <div class="view-toolbar three" aria-label="Market share filters">
+          <label><span>Bank</span><select id="marketBankFilter"></select></label>
+          <label><span>Period</span><select id="marketPeriodFilter"></select></label>
+          <label><span>Product / metric</span><select id="marketDimensionFilter"></select></label>
+          <button class="button button-quiet" id="marketReset" type="button">Reset</button>
+        </div>
 
-      <section class="kpi-grid" id="kpiGrid" aria-label="Key performance indicators"></section>
+        <section class="kpi-grid executive-kpis" id="marketKpiGrid" aria-label="Market share indicators"></section>
 
-      <section class="decision-grid" aria-label="Decision intelligence">
-        <article class="card target-card">
-          <div class="card-header">
-            <div><p class="card-kicker">VOLUME TO TARGET</p><h2>Growth required</h2></div>
-            <span class="unit-badge" id="targetPeriod">Latest period</span>
-          </div>
-          <div class="target-control" id="targetControl">
-            <div class="target-control-label">
-              <label for="targetShareInput">Target market share</label>
-              <strong id="targetShareValue">20.0%</strong>
+        <section class="executive-grid">
+          <article class="card chart-card">
+            <div class="card-header">
+              <div><p class="card-kicker">MARKET SHARE</p><h2 id="marketChartTitle">Market share over time</h2></div>
+              <div class="legend" id="marketLegend"></div>
             </div>
-            <input id="targetShareInput" type="range" min="5" max="35" step="0.5" value="20" />
-          </div>
-          <div class="target-metrics">
-            <div><span>Additional volume</span><strong id="targetGapOutput">—</strong></div>
-            <div><span>Required growth</span><strong id="targetGrowthOutput">—</strong></div>
-            <div><span>Gap to sector leader</span><strong id="leaderGapOutput">—</strong></div>
-          </div>
-          <p class="target-note" id="targetNote">Assumes other banks remain unchanged.</p>
-        </article>
+            <div class="chart" id="marketChart"></div>
+          </article>
+          <aside class="card readout-card">
+            <div class="card-header"><div><p class="card-kicker">EXECUTIVE READOUT</p><h2 id="marketReadoutTitle">Position at a glance</h2></div></div>
+            <ul class="readout-list" id="marketReadout"></ul>
+          </aside>
+        </section>
 
-        <article class="card alerts-card">
+        <section class="card table-card compact-table section-space">
           <div class="card-header">
-            <div><p class="card-kicker">EARLY-WARNING SYSTEM</p><h2>Signals requiring attention</h2></div>
-            <span class="alert-count" id="alertCount">0 signals</span>
-          </div>
-          <div class="alert-list" id="alertList"></div>
-        </article>
-      </section>
-
-      <section class="card heatmap-card">
-        <div class="card-header heatmap-header">
-          <div>
-            <p class="card-kicker">PORTFOLIO OPPORTUNITY MAP</p>
-            <h2 id="heatmapTitle">NLB opportunity heatmap</h2>
-          </div>
-          <label class="heatmap-filter">
-            <span>View</span>
-            <select id="heatmapMode">
-              <option value="all">All dimensions</option>
-              <option value="opportunity">Growth opportunities</option>
-              <option value="watch">Watchlist</option>
-              <option value="lead">Leadership positions</option>
-            </select>
-          </label>
-        </div>
-        <p class="heatmap-description" id="heatmapDescription">Cross-portfolio view of rank, momentum and the gap to the sector leader.</p>
-        <div class="heatmap-legend" aria-label="Signal legend">
-          <span><i class="signal-dot lead"></i>Lead</span>
-          <span><i class="signal-dot accelerate"></i>Accelerate</span>
-          <span><i class="signal-dot defend"></i>Defend</span>
-          <span><i class="signal-dot watch"></i>Watch</span>
-        </div>
-        <div class="table-wrap heatmap-wrap">
-          <table class="heatmap-table">
-            <thead>
-              <tr>
-                <th scope="col">Dimension</th>
-                <th scope="col" class="numeric">Rank</th>
-                <th scope="col" class="numeric">Share / ratio</th>
-                <th scope="col" class="numeric">Δ 3 periods</th>
-                <th scope="col">Gap to leader</th>
-                <th scope="col">Decision signal</th>
-              </tr>
-            </thead>
-            <tbody id="heatmapBody"></tbody>
-          </table>
-        </div>
-      </section>
-
-      <section class="dashboard-grid dashboard-grid-main">
-        <article class="card chart-card span-2">
-          <div class="card-header">
-            <div><p class="card-kicker">MARKET POSITION</p><h2 id="shareChartTitle">Market share over time</h2></div>
-            <div class="legend" id="shareLegend"></div>
-          </div>
-          <div class="chart" id="shareChart"></div>
-        </article>
-
-        <aside class="card signal-card" id="competitiveSignal"></aside>
-
-        <article class="card chart-card span-2">
-          <div class="card-header">
-            <div><p class="card-kicker">BALANCE TRAJECTORY</p><h2 id="valueChartTitle">Absolute value</h2></div>
-            <span class="unit-badge" id="valueChartUnit">EUR millions</span>
-          </div>
-          <div class="chart chart-compact" id="valueChart"></div>
-        </article>
-
-        <aside class="card insight-card">
-          <div class="card-header"><div><p class="card-kicker">MANAGEMENT READOUT</p><h2>Management implications</h2></div></div>
-          <ol class="insight-list" id="insightList"></ol>
-        </aside>
-      </section>
-
-      <section class="dashboard-grid ranking-grid">
-        <article class="card span-2 table-card">
-          <div class="card-header">
-            <div><p class="card-kicker">SECTOR STRUCTURE</p><h2>Competitive ranking</h2></div>
-            <span class="unit-badge" id="rankingUnit">EUR thousands</span>
+            <div><p class="card-kicker">SECTOR RANKING</p><h2 id="marketRankingTitle">Competitive ranking</h2></div>
+            <span class="unit-badge" id="marketRankingUnit">EUR millions</span>
           </div>
           <div class="table-wrap">
             <table>
-              <thead>
-                <tr>
-                  <th scope="col">Rank</th>
-                  <th scope="col">Bank</th>
-                  <th scope="col" class="numeric">Value</th>
-                  <th scope="col" class="numeric">Market share</th>
-                  <th scope="col">Relative position</th>
-                  <th scope="col" class="numeric">Δ share MoM</th>
-                  <th scope="col" class="numeric">Growth MoM</th>
-                </tr>
-              </thead>
-              <tbody id="rankingBody"></tbody>
+              <thead><tr><th>Rank</th><th>Bank</th><th class="numeric">Value</th><th class="numeric">Market share</th><th class="numeric">Δ share MoM</th><th class="numeric">Growth MoM</th></tr></thead>
+              <tbody id="marketRankingBody"></tbody>
             </table>
           </div>
-        </article>
+        </section>
 
-        <aside class="card movers-card">
-          <div class="card-header"><div><p class="card-kicker">SECTOR MOMENTUM</p><h2>Winners &amp; laggards</h2></div></div>
-          <div id="moversList"></div>
-        </aside>
+        <section class="card table-card compact-table section-space">
+          <div class="card-header">
+            <div><p class="card-kicker">PRODUCT MOMENTUM</p><h2>Largest MoM increase and decline by product</h2></div>
+            <span class="unit-badge">All banks</span>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Product</th><th>Largest increase</th><th class="numeric">Growth</th><th>Largest decline</th><th class="numeric">Growth</th><th class="numeric" id="selectedMomHeader">NLB growth</th><th class="numeric" id="selectedShareHeader">NLB Δ share</th></tr></thead>
+              <tbody id="productMomBody"></tbody>
+            </table>
+          </div>
+        </section>
       </section>
 
-      <section class="card data-card">
-        <div>
-          <p class="card-kicker">DATA ASSURANCE</p>
-          <h2>Source health</h2>
-          <p id="dataDescription">Automated structure and reconciliation checks.</p>
+      <section class="view-panel" id="view-profitability" data-view-panel="profitability">
+        <div class="view-toolbar three" aria-label="Profitability filters">
+          <label><span>Bank</span><select id="profitBankFilter"></select></label>
+          <label><span>Period</span><select id="profitPeriodFilter"></select></label>
+          <label><span>Benchmark bank</span><select id="profitPeerFilter"></select></label>
+          <button class="button button-quiet" id="profitReset" type="button">Reset</button>
         </div>
-        <div class="data-checks" id="dataChecks"></div>
-        <details>
-          <summary>Methodology</summary>
-          <p>Market share equals the bank value divided by the banking sector total. Monthly market share movement is shown in percentage points. The benchmark is the average of the selected peer group, excluding the bank being analysed. All source values are in EUR thousands.</p>
-        </details>
+
+        <section class="kpi-grid executive-kpis" id="profitKpiGrid" aria-label="Profitability indicators"></section>
+
+        <section class="executive-grid">
+          <article class="card chart-card">
+            <div class="card-header">
+              <div><p class="card-kicker">EARNINGS TRAJECTORY</p><h2>Net profit over time</h2></div>
+              <div class="legend" id="profitLegend"></div>
+            </div>
+            <div class="chart" id="profitChart"></div>
+          </article>
+          <aside class="card readout-card">
+            <div class="card-header"><div><p class="card-kicker">PROFITABILITY READOUT</p><h2 id="profitReadoutTitle">Earnings quality</h2></div></div>
+            <ul class="readout-list" id="profitReadout"></ul>
+          </aside>
+        </section>
+
+        <section class="card table-card compact-table section-space">
+          <div class="card-header">
+            <div><p class="card-kicker">PEER PROFITABILITY</p><h2>Profitability ranking</h2></div>
+            <span class="unit-badge" id="profitabilityPeriod">Latest period</span>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Rank</th><th>Bank</th><th class="numeric">Net profit</th><th class="numeric">Profit share</th><th class="numeric">ROA ann.</th><th class="numeric">ROE ann.</th><th class="numeric">Cost / income</th><th class="numeric">YTD movement</th></tr></thead>
+              <tbody id="profitabilityBody"></tbody>
+            </table>
+          </div>
+        </section>
+      </section>
+
+      <section class="view-panel" id="view-compare" data-view-panel="compare">
+        <div class="view-toolbar" aria-label="Bank comparison filters">
+          <label><span>Bank A</span><select id="compareBankA"></select></label>
+          <label><span>Bank B</span><select id="compareBankB"></select></label>
+          <label><span>Period</span><select id="comparePeriodFilter"></select></label>
+          <label><span>Metric</span><select id="compareDimensionFilter"></select></label>
+          <button class="button button-quiet" id="compareReset" type="button">Reset</button>
+        </div>
+
+        <div class="compare-callout" id="compareCallout">Choose any two banks to compare their position, momentum, balance sheet and profitability.</div>
+        <section class="compare-scorecards" id="compareScorecards"></section>
+        <section class="kpi-grid executive-kpis" id="compareKpiGrid" aria-label="Comparison gaps"></section>
+
+        <section class="executive-grid equal">
+          <article class="card chart-card full-span">
+            <div class="card-header">
+              <div><p class="card-kicker">HEAD-TO-HEAD TREND</p><h2 id="compareChartTitle">Market share over time</h2></div>
+              <div class="legend" id="compareLegend"></div>
+            </div>
+            <div class="chart" id="compareChart"></div>
+          </article>
+        </section>
+
+        <section class="card table-card compact-table section-space">
+          <div class="card-header">
+            <div><p class="card-kicker">DECISION MATRIX</p><h2>Balance, momentum and earnings comparison</h2></div>
+            <span class="unit-badge" id="compareMatrixPeriod">Latest period</span>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Metric</th><th class="numeric" id="matrixBankAHeader">Bank A</th><th class="numeric">A MoM</th><th class="numeric" id="matrixBankBHeader">Bank B</th><th class="numeric">B MoM</th><th class="numeric">Gap</th><th>Lead</th></tr></thead>
+              <tbody id="compareMatrixBody"></tbody>
+            </table>
+          </div>
+        </section>
       </section>
     </main>
 
@@ -696,12 +804,47 @@ globalThis.MSI_INITIAL_DATA = {"schemaVersion":1,"sourceFile":"01-Market-Share-D
     "Total Costs",
   ]);
 
+  const BANK_LABELS = {
+    RBKO: "Raiffeisen Bank Kosovo",
+    NLB: "NLB Banka",
+    BKT: "BKT Kosovo",
+    PCB: "ProCredit Bank",
+    TEB: "TEB Bank",
+    BEK: "Banka Ekonomike",
+    BPB: "Banka për Biznes",
+    PRB: "PriBank",
+    ZRB: "Ziraat Bank",
+    CRB: "Credins Bank",
+  };
+  const COMPARISON_METRICS = [
+    "Assets",
+    "Gross Loans to NBS",
+    "Gross Loans to Corporte",
+    "Micro",
+    "SME",
+    "Large",
+    "Gross Loans to Retail",
+    "Housing loans Gross",
+    "Consumer loans Gross",
+    "Deposits to NBS",
+    "Deposits CA",
+    "Deposits Saving",
+    "Deposits TDA",
+    "Net profit",
+    "Net Interest Income",
+    "Net Fee Income",
+    "Total Operating Income",
+    "LTD gross",
+  ];
+
   const state = {
     data: null,
     sourceMode: "embedded",
+    view: "market",
     bank: "NLB",
     period: null,
     dimension: "Assets",
+    compareDimension: "Assets",
     compareMode: "custom",
     competitor: "RBKO",
     benchmarkGroup: 10,
@@ -719,6 +862,13 @@ globalThis.MSI_INITIAL_DATA = {"schemaVersion":1,"sourceFile":"01-Market-Share-D
     .replaceAll(">", "&gt;")
     .replaceAll('"', "&quot;")
     .replaceAll("'", "&#039;");
+  const bankLabel = (bank) => BANK_LABELS[bank] || bank;
+  const dimensionLabel = (name) => String(name || "")
+    .replace("Corporte", "Corporate")
+    .replace("Net Loans to NBS", "Net loans")
+    .replace("Gross Loans to NBS", "Gross loans")
+    .replace("Deposits to NBS", "Total deposits")
+    .replace("LTD gross", "Gross LTD");
 
   function parsePeriod(value) {
     const text = cleanName(value);
@@ -814,7 +964,7 @@ globalThis.MSI_INITIAL_DATA = {"schemaVersion":1,"sourceFile":"01-Market-Share-D
 
   function analyze(data, options) {
     const dimension = getDimension(data, options.dimension);
-    const periodIndex = Math.max(0, dimension.periods.indexOf(options.period));
+    const periodIndex = periodIndexAtOrBefore(dimension.periods, options.period);
     const period = dimension.periods[periodIndex];
     const previousIndex = periodIndex > 0 ? periodIndex - 1 : -1;
     const currentSector = sectorAt(dimension, periodIndex);
@@ -1088,6 +1238,356 @@ globalThis.MSI_INITIAL_DATA = {"schemaVersion":1,"sourceFile":"01-Market-Share-D
     return value > 0 ? "positive" : "negative";
   }
 
+  function renderExecutiveKpis(element, cards) {
+    if (!element) return;
+    element.innerHTML = cards.map((card) => `
+      <article class="kpi-card${card.featured ? " featured" : ""}">
+        <div class="kpi-label">${escapeHtml(card.label)}</div>
+        <div class="kpi-value${finite(card.delta) && !card.featured ? ` ${deltaClass(card.delta)}` : ""}">${escapeHtml(card.value)}</div>
+        <div class="kpi-note">${escapeHtml(card.note || "")}</div>
+      </article>`).join("");
+  }
+
+  function allPeriods(data) {
+    return [...new Set(data.dimensions.flatMap((dimension) => dimension.periods))].sort();
+  }
+
+  function marketDimensionNames(data) {
+    return data.dimensions.filter((dimension) => !FLOW_METRICS.has(dimension.name)).map((dimension) => dimension.name);
+  }
+
+  function productDimensionNames(data) {
+    return data.dimensions
+      .filter((dimension) => !FLOW_METRICS.has(dimension.name)
+        && /loan|deposit|micro|sme|large|credit card|overdraft/i.test(dimension.name))
+      .map((dimension) => dimension.name);
+  }
+
+  function metricSnapshot(data, dimensionName, bank, referencePeriod) {
+    const dimension = data.dimensions.find((item) => item.name === dimensionName);
+    if (!dimension) return null;
+    const index = periodIndexAtOrBefore(dimension.periods, referencePeriod);
+    if (index < 0) return null;
+    const previousIndex = index > 0 ? index - 1 : -1;
+    const value = dimension.series[bank]?.[index] ?? null;
+    const previousValue = previousIndex >= 0 ? dimension.series[bank]?.[previousIndex] ?? null : null;
+    const share = shareAt(dimension, bank, index);
+    const previousShare = previousIndex >= 0 ? shareAt(dimension, bank, previousIndex) : null;
+    const rows = data.banks.map((item) => ({
+      bank: item,
+      value: dimension.series[item]?.[index] ?? null,
+      share: shareAt(dimension, item, index),
+    })).sort((a, b) => {
+      const aMetric = dimension.metricType === "ratio" ? a.value : a.share;
+      const bMetric = dimension.metricType === "ratio" ? b.value : b.share;
+      if (!finite(aMetric)) return 1;
+      if (!finite(bMetric)) return -1;
+      return bMetric - aMetric;
+    });
+    return {
+      bank,
+      dimension,
+      period: dimension.periods[index],
+      previousPeriod: previousIndex >= 0 ? dimension.periods[previousIndex] : null,
+      index,
+      value,
+      previousValue,
+      share,
+      previousShare,
+      shareDelta: finite(share) && finite(previousShare) ? share - previousShare : null,
+      growth: growthRate(value, previousValue),
+      rank: rows.findIndex((row) => row.bank === bank) + 1,
+      bankCount: rows.length,
+      sector: sectorAt(dimension, index),
+    };
+  }
+
+  function profitabilitySnapshot(data, bank, referencePeriod) {
+    const profitDimension = data.dimensions.find((item) => item.name === "Net profit");
+    if (!profitDimension) return null;
+    const profitIndex = periodIndexAtOrBefore(profitDimension.periods, referencePeriod);
+    if (profitIndex < 0) return null;
+    const period = profitDimension.periods[profitIndex];
+    const previousPeriod = profitIndex > 0 ? profitDimension.periods[profitIndex - 1] : null;
+
+    const valueAt = (name, selectedPeriod) => {
+      const dimension = data.dimensions.find((item) => item.name === name);
+      if (!dimension) return null;
+      const index = periodIndexAtOrBefore(dimension.periods, selectedPeriod);
+      return index >= 0 ? dimension.series[bank]?.[index] ?? null : null;
+    };
+    const ratiosAt = (selectedPeriod) => {
+      if (!selectedPeriod) return null;
+      const month = Number(selectedPeriod.slice(5, 7));
+      const annualizer = month ? 12 / month : null;
+      const netProfit = valueAt("Net profit", selectedPeriod);
+      const assets = valueAt("Assets", selectedPeriod);
+      const equity = valueAt("Equity", selectedPeriod);
+      const operatingIncome = valueAt("Total Operating Income", selectedPeriod);
+      const costs = valueAt("Total Costs", selectedPeriod);
+      const profitIndexAtPeriod = periodIndexAtOrBefore(profitDimension.periods, selectedPeriod);
+      const sectorProfit = profitIndexAtPeriod >= 0 ? sectorAt(profitDimension, profitIndexAtPeriod) : null;
+      return {
+        roa: finite(netProfit) && finite(assets) && assets !== 0 && finite(annualizer) ? netProfit / assets * annualizer : null,
+        roe: finite(netProfit) && finite(equity) && equity !== 0 && finite(annualizer) ? netProfit / equity * annualizer : null,
+        costIncome: finite(costs) && finite(operatingIncome) && operatingIncome !== 0 ? Math.abs(costs) / operatingIncome : null,
+        profitShare: finite(netProfit) && finite(sectorProfit) && sectorProfit !== 0 ? netProfit / sectorProfit : null,
+      };
+    };
+
+    const netProfit = profitDimension.series[bank]?.[profitIndex] ?? null;
+    const previousNetProfit = profitIndex > 0 ? profitDimension.series[bank]?.[profitIndex - 1] ?? null : null;
+    const currentRatios = ratiosAt(period) || {};
+    const previousRatios = ratiosAt(previousPeriod) || {};
+    const ranked = data.banks.map((item) => ({ bank: item, value: profitDimension.series[item]?.[profitIndex] ?? null }))
+      .filter((row) => finite(row.value))
+      .sort((a, b) => b.value - a.value);
+    const operatingIncome = valueAt("Total Operating Income", period);
+    const netInterestIncome = valueAt("Net Interest Income", period);
+    const netFeeIncome = valueAt("Net Fee Income", period);
+    return {
+      bank,
+      period,
+      previousPeriod,
+      netProfit,
+      previousNetProfit,
+      profitGrowth: growthRate(netProfit, previousNetProfit),
+      rank: ranked.findIndex((row) => row.bank === bank) + 1,
+      bankCount: ranked.length,
+      assets: valueAt("Assets", period),
+      equity: valueAt("Equity", period),
+      operatingIncome,
+      costs: valueAt("Total Costs", period),
+      netInterestIncome,
+      netFeeIncome,
+      niiMix: finite(netInterestIncome) && finite(operatingIncome) && operatingIncome !== 0 ? netInterestIncome / operatingIncome : null,
+      nfiMix: finite(netFeeIncome) && finite(operatingIncome) && operatingIncome !== 0 ? netFeeIncome / operatingIncome : null,
+      ...currentRatios,
+      roaDelta: finite(currentRatios.roa) && finite(previousRatios.roa) ? currentRatios.roa - previousRatios.roa : null,
+      roeDelta: finite(currentRatios.roe) && finite(previousRatios.roe) ? currentRatios.roe - previousRatios.roe : null,
+      costIncomeDelta: finite(currentRatios.costIncome) && finite(previousRatios.costIncome) ? currentRatios.costIncome - previousRatios.costIncome : null,
+      profitShareDelta: finite(currentRatios.profitShare) && finite(previousRatios.profitShare) ? currentRatios.profitShare - previousRatios.profitShare : null,
+    };
+  }
+
+  function updateViewVisibility() {
+    document.querySelectorAll("[data-view-panel]").forEach((panel) => {
+      panel.classList.toggle("active", panel.dataset.viewPanel === state.view);
+    });
+    document.querySelectorAll("[data-view]").forEach((button) => {
+      const active = button.dataset.view === state.view;
+      button.classList.toggle("active", active);
+      button.setAttribute("aria-current", active ? "page" : "false");
+    });
+  }
+
+  function renderMarketView() {
+    const analysis = analyze(state.data, { ...state, dimension: state.dimension, compareMode: "custom" });
+    const ratio = analysis.dimension.metricType === "ratio";
+    const leader = analysis.rows[0];
+    const nearest = leader.bank === analysis.selected.bank ? analysis.rows[1] : leader;
+    const selectedMetric = ratio ? analysis.selected.value : analysis.selected.share;
+    const nearestMetric = nearest ? (ratio ? nearest.value : nearest.share) : null;
+    const positionGap = finite(selectedMetric) && finite(nearestMetric) ? selectedMetric - nearestMetric : null;
+
+    renderExecutiveKpis($("marketKpiGrid"), ratio ? [
+      { label: "Gross LTD", value: formatShare(analysis.selected.value, 1), note: "loan-to-deposit ratio", featured: true },
+      { label: "Sector rank", value: `#${analysis.selected.rank}`, note: `out of ${analysis.rows.length} banks` },
+      { label: "Movement MoM", value: formatGrowth(analysis.selected.growth), note: `vs ${periodLabel(analysis.previousPeriod)}`, delta: analysis.selected.growth },
+      { label: "Gap to leader", value: formatDeltaPp((leader?.value ?? null) - analysis.selected.value), note: leader ? bankLabel(leader.bank) : "—" },
+      { label: "Sector ratio", value: formatShare(analysis.currentSector, 1), note: "banking sector" },
+      { label: "Value", value: formatShare(analysis.selected.value, 1), note: bankLabel(analysis.selected.bank) },
+    ] : [
+      { label: "Market share", value: formatShare(analysis.selected.share), note: `${formatDeltaPp(analysis.selected.shareDelta)} MoM`, featured: true },
+      { label: "Sector rank", value: `#${analysis.selected.rank}`, note: `out of ${analysis.rows.length} banks` },
+      { label: "Value", value: formatMillions(analysis.selected.value), note: dimensionLabel(analysis.dimension.name) },
+      { label: "Δ share MoM", value: formatDeltaPp(analysis.selected.shareDelta), note: `vs ${periodLabel(analysis.previousPeriod)}`, delta: analysis.selected.shareDelta },
+      { label: "Growth MoM", value: formatGrowth(analysis.selected.growth), note: "balance movement", delta: analysis.selected.growth },
+      { label: "Sector growth", value: formatGrowth(analysis.sectorGrowth), note: "total market", delta: analysis.sectorGrowth },
+    ]);
+
+    const chartComparator = nearest || analysis.rows.find((row) => row.bank !== analysis.selected.bank);
+    const chartPeriods = analysis.periods;
+    const selectedSeries = ratio
+      ? analysis.selectedValueSeries
+      : analysis.selectedShareSeries;
+    const comparatorSeries = chartPeriods.map((_, index) => ratio
+      ? analysis.dimension.series[chartComparator.bank]?.[index] ?? null
+      : shareAt(analysis.dimension, chartComparator.bank, index));
+    const chartSeries = [
+      { name: bankLabel(analysis.selected.bank), color: COLORS[0], values: selectedSeries },
+      { name: bankLabel(chartComparator.bank), color: COLORS[2], values: comparatorSeries },
+    ];
+    $("marketChartTitle").textContent = `${dimensionLabel(analysis.dimension.name)} over time`;
+    renderLegend($("marketLegend"), chartSeries);
+    renderLineChart($("marketChart"), chartPeriods, chartSeries, (value) => formatShare(value, ratio ? 1 : 2), `${dimensionLabel(analysis.dimension.name)} market position`);
+
+    $("marketReadoutTitle").textContent = `${bankLabel(analysis.selected.bank)} · ${dimensionLabel(analysis.dimension.name)}`;
+    const positionText = analysis.selected.rank === 1
+      ? `<strong>Market leader.</strong> The buffer to ${escapeHtml(bankLabel(nearest?.bank || ""))} is ${escapeHtml(formatDeltaPp(positionGap))}.`
+      : `<strong>Rank #${analysis.selected.rank}.</strong> The gap to ${escapeHtml(bankLabel(leader?.bank || ""))} is ${escapeHtml(formatDeltaPp(Math.abs(positionGap || 0)))}.`;
+    $("marketReadout").innerHTML = [
+      positionText,
+      `<strong>Momentum:</strong> ${escapeHtml(formatGrowth(analysis.selected.growth))} MoM versus sector growth of ${escapeHtml(formatGrowth(analysis.sectorGrowth))}.`,
+      ratio ? `<strong>Funding signal:</strong> Gross LTD is ${escapeHtml(formatShare(analysis.selected.value, 1))}.`
+        : `<strong>Share movement:</strong> ${escapeHtml(formatDeltaPp(analysis.selected.shareDelta))} in the latest reported period.`,
+      ratio ? `<strong>Peer position:</strong> ${escapeHtml(formatDeltaPp(analysis.selected.value - analysis.currentSector))} versus the sector ratio.`
+        : `<strong>Concentration:</strong> the top three banks control ${escapeHtml(formatShare(analysis.top3Concentration, 1))} of this market.`,
+    ].map((text) => `<li>${text}</li>`).join("");
+
+    $("marketRankingTitle").textContent = `${dimensionLabel(analysis.dimension.name)} ranking`;
+    $("marketRankingUnit").textContent = ratio ? "ratio" : "EUR millions";
+    $("marketRankingBody").innerHTML = analysis.rows.map((row) => `
+      <tr class="${row.bank === state.bank ? "selected-row" : ""}">
+        <td>${row.rank}</td>
+        <td><div class="bank-full"><span class="bank-code">${escapeHtml(row.bank)}</span>${escapeHtml(bankLabel(row.bank))}</div></td>
+        <td class="numeric">${escapeHtml(ratio ? formatShare(row.value, 1) : formatMillions(row.value))}</td>
+        <td class="numeric">${escapeHtml(ratio ? "—" : formatShare(row.share))}</td>
+        <td class="numeric ${deltaClass(row.shareDelta)}">${escapeHtml(ratio ? "—" : formatDeltaPp(row.shareDelta))}</td>
+        <td class="numeric ${deltaClass(row.growth)}">${escapeHtml(formatGrowth(row.growth))}</td>
+      </tr>`).join("");
+
+    $("selectedMomHeader").textContent = `${analysis.selected.bank} growth`;
+    $("selectedShareHeader").textContent = `${analysis.selected.bank} Δ share`;
+    const productRows = productDimensionNames(state.data).map((dimensionName) => {
+      const snapshots = state.data.banks.map((bank) => metricSnapshot(state.data, dimensionName, bank, state.period)).filter(Boolean);
+      const valid = snapshots.filter((snapshot) => finite(snapshot.growth)).sort((a, b) => b.growth - a.growth);
+      const negatives = valid.filter((snapshot) => snapshot.growth < 0).sort((a, b) => a.growth - b.growth);
+      const winner = valid[0] || null;
+      const loser = negatives[0] || valid.at(-1) || null;
+      const selected = snapshots.find((snapshot) => snapshot.bank === state.bank);
+      return { dimensionName, winner, loser, selected };
+    }).filter((row) => row.winner && row.loser && row.selected);
+    $("productMomBody").innerHTML = productRows.map((row) => `
+      <tr>
+        <td class="metric-name"><strong>${escapeHtml(dimensionLabel(row.dimensionName))}</strong><small>${escapeHtml(periodLabel(row.selected.period))}</small></td>
+        <td><div class="bank-full"><span class="bank-code">${escapeHtml(row.winner.bank)}</span>${escapeHtml(bankLabel(row.winner.bank))}</div></td>
+        <td class="numeric ${deltaClass(row.winner.growth)}">${escapeHtml(formatGrowth(row.winner.growth))}</td>
+        <td><div class="bank-full"><span class="bank-code">${escapeHtml(row.loser.bank)}</span>${escapeHtml(bankLabel(row.loser.bank))}</div></td>
+        <td class="numeric ${deltaClass(row.loser.growth)}">${escapeHtml(formatGrowth(row.loser.growth))}</td>
+        <td class="numeric ${deltaClass(row.selected.growth)}">${escapeHtml(formatGrowth(row.selected.growth))}</td>
+        <td class="numeric ${deltaClass(row.selected.shareDelta)}">${escapeHtml(formatDeltaPp(row.selected.shareDelta))}</td>
+      </tr>`).join("");
+  }
+
+  function renderProfitabilityView() {
+    const selected = profitabilitySnapshot(state.data, state.bank, state.period);
+    const peer = profitabilitySnapshot(state.data, state.competitor, state.period);
+    if (!selected || !peer) return;
+    renderExecutiveKpis($("profitKpiGrid"), [
+      { label: "Net profit", value: formatMillions(selected.netProfit), note: `rank #${selected.rank}`, featured: true },
+      { label: "Profit share", value: formatShare(selected.profitShare), note: `${formatDeltaPp(selected.profitShareDelta)} MoM`, delta: selected.profitShareDelta },
+      { label: "ROA annualised", value: formatShare(selected.roa, 2), note: `${formatDeltaPp(selected.roaDelta)} MoM`, delta: selected.roaDelta },
+      { label: "ROE annualised", value: formatShare(selected.roe, 1), note: `${formatDeltaPp(selected.roeDelta)} MoM`, delta: selected.roeDelta },
+      { label: "Cost / income", value: formatShare(selected.costIncome, 1), note: `${formatDeltaPp(selected.costIncomeDelta)} MoM`, delta: finite(selected.costIncomeDelta) ? -selected.costIncomeDelta : null },
+      { label: "Operating income", value: formatMillions(selected.operatingIncome), note: `${formatGrowth(selected.profitGrowth)} profit movement`, delta: selected.profitGrowth },
+    ]);
+
+    const profitDimension = state.data.dimensions.find((dimension) => dimension.name === "Net profit");
+    const index = periodIndexAtOrBefore(profitDimension.periods, state.period);
+    const periods = profitDimension.periods.slice(0, index + 1);
+    const series = [
+      { name: bankLabel(state.bank), color: COLORS[0], values: periods.map((_, itemIndex) => profitDimension.series[state.bank]?.[itemIndex] ?? null) },
+      { name: bankLabel(state.competitor), color: COLORS[2], values: periods.map((_, itemIndex) => profitDimension.series[state.competitor]?.[itemIndex] ?? null) },
+    ];
+    renderLegend($("profitLegend"), series);
+    renderLineChart($("profitChart"), periods, series, (value, axis) => axis ? `${numberFormat.format(value / 1000)}m` : formatMillions(value), "Net profit trajectory");
+
+    $("profitReadoutTitle").textContent = `${bankLabel(state.bank)} profitability`;
+    const efficiencyLead = finite(selected.costIncome) && finite(peer.costIncome) ? peer.costIncome - selected.costIncome : null;
+    $("profitReadout").innerHTML = [
+      `<strong>Profit rank #${selected.rank}:</strong> ${escapeHtml(formatMillions(selected.netProfit))} and ${escapeHtml(formatShare(selected.profitShare))} of sector profit.`,
+      `<strong>Return gap vs ${escapeHtml(bankLabel(peer.bank))}:</strong> ROA ${escapeHtml(formatDeltaPp(selected.roa - peer.roa))}; ROE ${escapeHtml(formatDeltaPp(selected.roe - peer.roe))}.`,
+      `<strong>Efficiency:</strong> cost / income is ${escapeHtml(formatShare(selected.costIncome, 1))}, ${escapeHtml(formatDeltaPp(Math.abs(efficiencyLead || 0)))} ${efficiencyLead >= 0 ? "better" : "weaker"} than ${escapeHtml(bankLabel(peer.bank))}.`,
+      `<strong>Income mix:</strong> net interest contributes ${escapeHtml(formatShare(selected.niiMix, 1))}; net fees contribute ${escapeHtml(formatShare(selected.nfiMix, 1))} of operating income.`,
+    ].map((text) => `<li>${text}</li>`).join("");
+
+    const rows = state.data.banks.map((bank) => profitabilitySnapshot(state.data, bank, state.period)).filter(Boolean)
+      .sort((a, b) => (b.netProfit ?? -Infinity) - (a.netProfit ?? -Infinity));
+    $("profitabilityPeriod").textContent = periodLabel(selected.period);
+    $("profitabilityBody").innerHTML = rows.map((row, indexRow) => `
+      <tr class="${row.bank === state.bank ? "selected-row" : row.bank === state.competitor ? "competitor-row" : ""}">
+        <td>${indexRow + 1}</td>
+        <td><div class="bank-full"><span class="bank-code">${escapeHtml(row.bank)}</span>${escapeHtml(bankLabel(row.bank))}</div></td>
+        <td class="numeric">${escapeHtml(formatMillions(row.netProfit))}</td>
+        <td class="numeric">${escapeHtml(formatShare(row.profitShare))}</td>
+        <td class="numeric">${escapeHtml(formatShare(row.roa, 2))}</td>
+        <td class="numeric">${escapeHtml(formatShare(row.roe, 1))}</td>
+        <td class="numeric">${escapeHtml(formatShare(row.costIncome, 1))}</td>
+        <td class="numeric ${deltaClass(row.profitGrowth)}">${escapeHtml(formatGrowth(row.profitGrowth))}</td>
+      </tr>`).join("");
+  }
+
+  function renderCompareView() {
+    const analysis = analyze(state.data, { ...state, dimension: state.compareDimension, compareMode: "custom" });
+    const ratio = analysis.dimension.metricType === "ratio";
+    const bankA = analysis.selected;
+    const bankB = analysis.competitor;
+    const scorecard = (row, competitor = false) => `
+      <article class="card bank-scorecard${competitor ? " competitor" : ""}">
+        <p class="card-kicker">${competitor ? "BANK B" : "BANK A"}</p>
+        <h2>${escapeHtml(bankLabel(row.bank))}</h2>
+        <div class="score-rank">${escapeHtml(dimensionLabel(analysis.dimension.name))} · sector rank #${row.rank}</div>
+        <div class="score-metrics">
+          <div class="score-metric"><span>${ratio ? "Ratio" : "Market share"}</span><strong>${escapeHtml(ratio ? formatShare(row.value, 1) : formatShare(row.share))}</strong></div>
+          <div class="score-metric"><span>Value</span><strong>${escapeHtml(ratio ? formatShare(row.value, 1) : formatMillions(row.value))}</strong></div>
+          <div class="score-metric"><span>MoM growth</span><strong class="${deltaClass(row.growth)}">${escapeHtml(formatGrowth(row.growth))}</strong></div>
+          <div class="score-metric"><span>Δ share</span><strong class="${deltaClass(row.shareDelta)}">${escapeHtml(ratio ? "—" : formatDeltaPp(row.shareDelta))}</strong></div>
+        </div>
+      </article>`;
+    $("compareScorecards").innerHTML = scorecard(bankA) + scorecard(bankB, true);
+
+    const metricGap = ratio ? bankA.value - bankB.value : bankA.share - bankB.share;
+    const momentumGap = finite(bankA.growth) && finite(bankB.growth) ? bankA.growth - bankB.growth : null;
+    const profitA = profitabilitySnapshot(state.data, bankA.bank, state.period);
+    const profitB = profitabilitySnapshot(state.data, bankB.bank, state.period);
+    renderExecutiveKpis($("compareKpiGrid"), [
+      { label: ratio ? "Ratio gap" : "Share gap", value: formatDeltaPp(metricGap), note: `${bankA.bank} minus ${bankB.bank}`, featured: true },
+      { label: "Value gap", value: ratio ? "—" : formatMillions(bankA.value - bankB.value), note: dimensionLabel(analysis.dimension.name), delta: ratio ? null : bankA.value - bankB.value },
+      { label: "Momentum gap", value: formatGrowth(momentumGap), note: "MoM growth difference", delta: momentumGap },
+      { label: "Rank gap", value: `${bankA.rank - bankB.rank > 0 ? "+" : ""}${bankA.rank - bankB.rank}`, note: `${bankA.bank} rank minus ${bankB.bank}` },
+      { label: "Profit gap", value: formatMillions((profitA?.netProfit ?? 0) - (profitB?.netProfit ?? 0)), note: "net profit YTD", delta: (profitA?.netProfit ?? 0) - (profitB?.netProfit ?? 0) },
+      { label: "Efficiency gap", value: formatDeltaPp((profitB?.costIncome ?? 0) - (profitA?.costIncome ?? 0)), note: "positive favours Bank A", delta: (profitB?.costIncome ?? 0) - (profitA?.costIncome ?? 0) },
+    ]);
+
+    const leadBank = metricGap >= 0 ? bankA : bankB;
+    $("compareCallout").innerHTML = `<strong>${escapeHtml(bankLabel(leadBank.bank))} leads in ${escapeHtml(dimensionLabel(analysis.dimension.name))}.</strong> The ${ratio ? "ratio" : "market-share"} gap is ${escapeHtml(formatDeltaPp(Math.abs(metricGap)))}; the MoM momentum gap is ${escapeHtml(formatGrowth(Math.abs(momentumGap || 0)))}.`;
+
+    const series = ratio ? [
+      { name: bankLabel(bankA.bank), color: COLORS[0], values: analysis.selectedValueSeries },
+      { name: bankLabel(bankB.bank), color: COLORS[2], values: analysis.competitorValueSeries },
+    ] : [
+      { name: bankLabel(bankA.bank), color: COLORS[0], values: analysis.selectedShareSeries },
+      { name: bankLabel(bankB.bank), color: COLORS[2], values: analysis.competitorShareSeries },
+    ];
+    $("compareChartTitle").textContent = `${dimensionLabel(analysis.dimension.name)} · ${ratio ? "ratio" : "market share"}`;
+    renderLegend($("compareLegend"), series);
+    renderLineChart($("compareChart"), analysis.periods, series, (value) => formatShare(value, ratio ? 1 : 2), `${dimensionLabel(analysis.dimension.name)} head-to-head`);
+
+    const matrixMetrics = COMPARISON_METRICS.filter((name) => state.data.dimensions.some((dimension) => dimension.name === name));
+    $("matrixBankAHeader").textContent = bankA.bank;
+    $("matrixBankBHeader").textContent = bankB.bank;
+    $("compareMatrixPeriod").textContent = periodLabel(analysis.period);
+    $("compareMatrixBody").innerHTML = matrixMetrics.map((name) => {
+      const a = metricSnapshot(state.data, name, bankA.bank, state.period);
+      const b = metricSnapshot(state.data, name, bankB.bank, state.period);
+      if (!a || !b) return "";
+      const isRatio = a.dimension.metricType === "ratio";
+      const gap = isRatio ? a.value - b.value : a.share - b.share;
+      const lead = Math.abs(gap || 0) < 1e-10 ? null : gap > 0 ? a.bank : b.bank;
+      const value = (snapshot) => isRatio ? formatShare(snapshot.value, 1) : formatMillions(snapshot.value);
+      return `<tr>
+        <td class="metric-name"><strong>${escapeHtml(dimensionLabel(name))}</strong><small>${escapeHtml(periodLabel(a.period))}</small></td>
+        <td class="numeric">${escapeHtml(value(a))}</td>
+        <td class="numeric ${deltaClass(a.growth)}">${escapeHtml(formatGrowth(a.growth))}</td>
+        <td class="numeric">${escapeHtml(value(b))}</td>
+        <td class="numeric ${deltaClass(b.growth)}">${escapeHtml(formatGrowth(b.growth))}</td>
+        <td class="numeric ${deltaClass(gap)}">${escapeHtml(formatDeltaPp(gap))}</td>
+        <td><span class="lead-chip${lead ? "" : " tie"}">${escapeHtml(lead ? bankLabel(lead) : "Tie")}</span></td>
+      </tr>`;
+    }).join("");
+  }
+
   function renderKpis(analysis) {
     const ratio = analysis.dimension.metricType === "ratio";
     const isFlow = FLOW_METRICS.has(analysis.dimension.name);
@@ -1348,44 +1848,14 @@ globalThis.MSI_INITIAL_DATA = {"schemaVersion":1,"sourceFile":"01-Market-Share-D
 
   function renderDashboard() {
     if (!state.data) return;
-    const analysis = analyze(state.data, state);
-    state.period = analysis.period;
-    $("pageTitle").textContent = `${analysis.selected.bank} · ${analysis.dimension.name}`;
-    $("pageSubtitle").textContent = `${periodLabel(analysis.period)} · ${state.compareMode === "custom" ? `compared with ${analysis.competitor.bank}` : `Top ${state.benchmarkGroup} benchmark`} · source values in EUR thousands`;
-    $("competitorField").hidden = state.compareMode !== "custom";
-
-    renderKpis(analysis);
-    renderTargetScenario(analysis);
-    renderDecisionAlerts(analysis);
-    renderOpportunityHeatmap();
-    const ratio = analysis.dimension.metricType === "ratio";
-    const comparisonName = state.compareMode === "custom" ? analysis.competitor.bank : `Top ${state.benchmarkGroup} avg`;
-    const shareSeries = ratio ? [
-      { name: analysis.selected.bank, color: COLORS[0], values: analysis.selectedValueSeries },
-      { name: comparisonName, color: COLORS[1], values: state.compareMode === "custom" ? analysis.competitorValueSeries : analysis.benchmarkSeries },
-    ] : [
-      { name: analysis.selected.bank, color: COLORS[0], values: analysis.selectedShareSeries },
-      { name: comparisonName, color: COLORS[1], values: state.compareMode === "custom" ? analysis.competitorShareSeries : analysis.benchmarkSeries },
-    ];
-    renderLegend($("shareLegend"), shareSeries);
-    renderLineChart($("shareChart"), analysis.periods, shareSeries, (value) => formatShare(value, 1), `${analysis.dimension.name}: ${ratio ? "ratio" : "market share"} trend`);
-
-    const valueSeries = [
-      { name: analysis.selected.bank, color: COLORS[0], values: analysis.selectedValueSeries },
-      { name: analysis.competitor.bank, color: COLORS[2], values: analysis.competitorValueSeries },
-    ];
-    renderLineChart(
-      $("valueChart"),
-      analysis.periods,
-      valueSeries,
-      ratio ? (value) => formatShare(value, 1) : (value, axis) => axis ? `${numberFormat.format(value / 1000)}m` : formatMillions(value),
-      `${analysis.dimension.name}: ${ratio ? "ratio" : "absolute value"} trend`,
-    );
-    renderSignal(analysis);
-    renderInsights(analysis);
-    renderRanking(analysis);
-    renderMovers(analysis);
-    renderDataChecks(analysis);
+    const periods = allPeriods(state.data);
+    if (!periods.includes(state.period)) state.period = periods.at(-1);
+    $("pageTitle").textContent = "NLB Market Share Intelligence";
+    $("pageSubtitle").textContent = `${periodLabel(state.period)} · ${state.data.banks.length} banks · ${state.data.dimensions.length} metrics · values in EUR thousands`;
+    updateViewVisibility();
+    if (state.view === "profitability") renderProfitabilityView();
+    else if (state.view === "compare") renderCompareView();
+    else renderMarketView();
     updateUrl();
   }
 
@@ -1396,46 +1866,54 @@ globalThis.MSI_INITIAL_DATA = {"schemaVersion":1,"sourceFile":"01-Market-Share-D
   function applyUrlParams() {
     if (state.paramsApplied || typeof location === "undefined") return;
     const params = new URLSearchParams(location.search);
+    const view = params.get("view");
+    const bank = params.get("bank");
     const dimension = params.get("dimension");
+    const compareDimension = params.get("compareDimension");
     const period = parsePeriod(params.get("period"));
     const competitor = params.get("competitor");
-    const compareMode = params.get("compareMode");
-    const benchmarkGroup = Number(params.get("benchmarkGroup"));
+    if (["market", "profitability", "compare"].includes(view)) state.view = view;
+    if (state.data.banks.includes(bank)) state.bank = bank;
     if (state.data.dimensions.some((item) => item.name === dimension)) state.dimension = dimension;
-    const dimensionData = getDimension(state.data, state.dimension);
-    if (period && dimensionData.periods.includes(period)) state.period = period;
+    if (state.data.dimensions.some((item) => item.name === compareDimension)) state.compareDimension = compareDimension;
+    if (period && allPeriods(state.data).includes(period)) state.period = period;
     if (state.data.banks.includes(competitor) && competitor !== state.bank) state.competitor = competitor;
-    if (["custom", "benchmark"].includes(compareMode)) state.compareMode = compareMode;
-    if ([3, 5, 10].includes(benchmarkGroup)) state.benchmarkGroup = benchmarkGroup;
     state.paramsApplied = true;
   }
 
   function setupFilters(resetPeriod = false) {
     applyUrlParams();
     if (!state.data.banks.includes(state.bank)) state.bank = state.data.banks[0];
-    if (!state.data.dimensions.some((item) => item.name === state.dimension)) state.dimension = state.data.dimensions[0].name;
-    const dimension = getDimension(state.data, state.dimension);
-    if (resetPeriod || !dimension.periods.includes(state.period)) state.period = dimension.periods.at(-1);
+    const marketDimensions = marketDimensionNames(state.data);
+    if (!marketDimensions.includes(state.dimension)) state.dimension = marketDimensions.includes("Assets") ? "Assets" : marketDimensions[0];
+    if (!state.data.dimensions.some((item) => item.name === state.compareDimension)) state.compareDimension = "Assets";
+    const periods = allPeriods(state.data);
+    if (resetPeriod || !periods.includes(state.period)) state.period = periods.at(-1);
     if (!state.data.banks.includes(state.competitor) || state.competitor === state.bank) {
       state.competitor = state.data.banks.find((bank) => bank !== state.bank) || state.bank;
     }
 
-    populateSelect($("bankFilter"), state.data.banks, state.bank);
-    populateSelect($("dimensionFilter"), state.data.dimensions.map((item) => item.name), state.dimension);
-    populateSelect($("periodFilter"), [...dimension.periods].reverse(), state.period, periodLabel);
-    populateSelect($("competitorFilter"), state.data.banks.filter((bank) => bank !== state.bank), state.competitor);
-    $("compareModeFilter").value = state.compareMode;
-    $("benchmarkFilter").value = String(state.benchmarkGroup);
+    const reversedPeriods = [...periods].reverse();
+    populateSelect($("marketBankFilter"), state.data.banks, state.bank, bankLabel);
+    populateSelect($("profitBankFilter"), state.data.banks, state.bank, bankLabel);
+    populateSelect($("compareBankA"), state.data.banks, state.bank, bankLabel);
+    populateSelect($("profitPeerFilter"), state.data.banks.filter((bank) => bank !== state.bank), state.competitor, bankLabel);
+    populateSelect($("compareBankB"), state.data.banks.filter((bank) => bank !== state.bank), state.competitor, bankLabel);
+    populateSelect($("marketDimensionFilter"), marketDimensions, state.dimension, dimensionLabel);
+    populateSelect($("compareDimensionFilter"), state.data.dimensions.map((item) => item.name), state.compareDimension, dimensionLabel);
+    populateSelect($("marketPeriodFilter"), reversedPeriods, state.period, periodLabel);
+    populateSelect($("profitPeriodFilter"), reversedPeriods, state.period, periodLabel);
+    populateSelect($("comparePeriodFilter"), reversedPeriods, state.period, periodLabel);
   }
 
   function updateUrl() {
     if (typeof history === "undefined" || typeof location === "undefined") return;
     const params = new URLSearchParams(location.search);
+    params.set("view", state.view);
     params.set("bank", state.bank);
     params.set("period", state.period);
     params.set("dimension", state.dimension);
-    params.set("benchmarkGroup", String(state.benchmarkGroup));
-    params.set("compareMode", state.compareMode);
+    params.set("compareDimension", state.compareDimension);
     params.set("competitor", state.competitor);
     try { history.replaceState(null, "", `${location.pathname}?${params.toString()}`); } catch (_) { /* file URLs may reject history updates */ }
   }
@@ -1584,30 +2062,63 @@ globalThis.MSI_INITIAL_DATA = {"schemaVersion":1,"sourceFile":"01-Market-Share-D
   }
 
   function bindEvents() {
-    $("bankFilter").addEventListener("change", (event) => {
-      state.bank = event.target.value;
-      if (state.competitor === state.bank) state.competitor = state.data.banks.find((bank) => bank !== state.bank);
-      setupFilters(false);
+    document.querySelectorAll("[data-view]").forEach((button) => {
+      button.addEventListener("click", () => {
+        state.view = button.dataset.view;
+        setupFilters(false);
+        renderDashboard();
+      });
+    });
+    ["marketBankFilter", "profitBankFilter", "compareBankA"].forEach((id) => {
+      $(id).addEventListener("change", (event) => {
+        state.bank = event.target.value;
+        if (state.competitor === state.bank) state.competitor = state.data.banks.find((bank) => bank !== state.bank);
+        setupFilters(false);
+        renderDashboard();
+      });
+    });
+    ["marketPeriodFilter", "profitPeriodFilter", "comparePeriodFilter"].forEach((id) => {
+      $(id).addEventListener("change", (event) => {
+        state.period = event.target.value;
+        setupFilters(false);
+        renderDashboard();
+      });
+    });
+    $("marketDimensionFilter").addEventListener("change", (event) => {
+      state.dimension = event.target.value;
       renderDashboard();
     });
-    $("periodFilter").addEventListener("change", (event) => { state.period = event.target.value; renderDashboard(); });
-    $("dimensionFilter").addEventListener("change", (event) => {
-      state.dimension = event.target.value;
+    $("compareDimensionFilter").addEventListener("change", (event) => {
+      state.compareDimension = event.target.value;
+      renderDashboard();
+    });
+    ["profitPeerFilter", "compareBankB"].forEach((id) => {
+      $(id).addEventListener("change", (event) => {
+        state.competitor = event.target.value;
+        setupFilters(false);
+        renderDashboard();
+      });
+    });
+    $("marketReset").addEventListener("click", () => {
+      state.bank = state.data.banks.includes("NLB") ? "NLB" : state.data.banks[0];
+      state.dimension = marketDimensionNames(state.data).includes("Assets") ? "Assets" : marketDimensionNames(state.data)[0];
+      state.period = null;
+      state.competitor = state.data.banks.includes("RBKO") ? "RBKO" : state.data.banks.find((bank) => bank !== state.bank);
       setupFilters(true);
       renderDashboard();
     });
-    $("compareModeFilter").addEventListener("change", (event) => { state.compareMode = event.target.value; renderDashboard(); });
-    $("competitorFilter").addEventListener("change", (event) => { state.competitor = event.target.value; renderDashboard(); });
-    $("benchmarkFilter").addEventListener("change", (event) => { state.benchmarkGroup = Number(event.target.value); renderDashboard(); });
-    $("resetFilters").addEventListener("click", () => {
+    $("profitReset").addEventListener("click", () => {
       state.bank = state.data.banks.includes("NLB") ? "NLB" : state.data.banks[0];
-      state.dimension = state.data.dimensions.some((item) => item.name === "Assets") ? "Assets" : state.data.dimensions[0].name;
-      state.period = null;
-      state.compareMode = "custom";
       state.competitor = state.data.banks.includes("RBKO") ? "RBKO" : state.data.banks.find((bank) => bank !== state.bank);
-      state.benchmarkGroup = 10;
-      state.targetShare = 20;
-      state.heatmapMode = "all";
+      state.period = null;
+      setupFilters(true);
+      renderDashboard();
+    });
+    $("compareReset").addEventListener("click", () => {
+      state.bank = state.data.banks.includes("NLB") ? "NLB" : state.data.banks[0];
+      state.competitor = state.data.banks.includes("RBKO") ? "RBKO" : state.data.banks.find((bank) => bank !== state.bank);
+      state.compareDimension = state.data.dimensions.some((item) => item.name === "Assets") ? "Assets" : state.data.dimensions[0].name;
+      state.period = null;
       setupFilters(true);
       renderDashboard();
     });
@@ -1626,35 +2137,48 @@ globalThis.MSI_INITIAL_DATA = {"schemaVersion":1,"sourceFile":"01-Market-Share-D
         event.target.value = "";
       }
     });
-    $("targetShareInput").addEventListener("input", (event) => {
-      state.targetShare = Number(event.target.value);
-      renderTargetScenario(analyze(state.data, state));
-    });
-    $("heatmapMode").addEventListener("change", (event) => {
-      state.heatmapMode = event.target.value;
-      renderOpportunityHeatmap();
-    });
     $("exportCsv").addEventListener("click", exportRankingCsv);
   }
 
   function exportRankingCsv() {
-    const analysis = analyze(state.data, state);
-    const rows = [["Rank", "Bank", "Period", "Dimension", "Value k EUR", "Market Share", "Share Delta MoM pp", "Growth MoM"]];
-    analysis.rows.forEach((row) => rows.push([
-      row.rank,
-      row.bank,
-      analysis.period,
-      analysis.dimension.name,
-      finite(row.value) ? row.value : "",
-      finite(row.share) ? row.share : "",
-      finite(row.shareDelta) ? row.shareDelta * 100 : "",
-      finite(row.growth) ? row.growth : "",
-    ]));
+    let rows;
+    let fileName;
+    if (state.view === "profitability") {
+      rows = [["Rank", "Bank", "Period", "Net profit k EUR", "Profit share", "ROA annualised", "ROE annualised", "Cost income", "YTD movement"]];
+      state.data.banks.map((bank) => profitabilitySnapshot(state.data, bank, state.period)).filter(Boolean)
+        .sort((a, b) => (b.netProfit ?? -Infinity) - (a.netProfit ?? -Infinity))
+        .forEach((row, index) => rows.push([index + 1, bankLabel(row.bank), row.period, row.netProfit, row.profitShare, row.roa, row.roe, row.costIncome, row.profitGrowth]));
+      fileName = `profitability-${state.period}.csv`;
+    } else if (state.view === "compare") {
+      rows = [["Metric", "Period", bankLabel(state.bank), `${bankLabel(state.bank)} MoM`, bankLabel(state.competitor), `${bankLabel(state.competitor)} MoM`, "Share or ratio gap pp"]];
+      COMPARISON_METRICS.forEach((name) => {
+        const a = metricSnapshot(state.data, name, state.bank, state.period);
+        const b = metricSnapshot(state.data, name, state.competitor, state.period);
+        if (!a || !b) return;
+        const gap = a.dimension.metricType === "ratio" ? a.value - b.value : a.share - b.share;
+        rows.push([dimensionLabel(name), a.period, a.value, a.growth, b.value, b.growth, finite(gap) ? gap * 100 : ""]);
+      });
+      fileName = `compare-${state.bank}-vs-${state.competitor}-${state.period}.csv`;
+    } else {
+      const analysis = analyze(state.data, { ...state, dimension: state.dimension });
+      rows = [["Rank", "Bank", "Period", "Dimension", "Value k EUR", "Market Share", "Share Delta MoM pp", "Growth MoM"]];
+      analysis.rows.forEach((row) => rows.push([
+        row.rank,
+        bankLabel(row.bank),
+        analysis.period,
+        dimensionLabel(analysis.dimension.name),
+        finite(row.value) ? row.value : "",
+        finite(row.share) ? row.share : "",
+        finite(row.shareDelta) ? row.shareDelta * 100 : "",
+        finite(row.growth) ? row.growth : "",
+      ]));
+      fileName = `market-share-${analysis.dimension.name.toLowerCase().replace(/[^a-z0-9]+/g, "-")}-${analysis.period}.csv`;
+    }
     const csv = rows.map((row) => row.map((value) => `"${String(value).replaceAll('"', '""')}"`).join(",")).join("\r\n");
     const blob = new Blob(["\ufeff", csv], { type: "text/csv;charset=utf-8" });
     const link = document.createElement("a");
     link.href = URL.createObjectURL(blob);
-    link.download = `market-share-${analysis.dimension.name.toLowerCase().replace(/[^a-z0-9]+/g, "-")}-${analysis.period}.csv`;
+    link.download = fileName;
     link.click();
     setTimeout(() => URL.revokeObjectURL(link.href), 500);
   }
@@ -1695,6 +2219,10 @@ globalThis.MSI_INITIAL_DATA = {"schemaVersion":1,"sourceFile":"01-Market-Share-D
       shareAt,
       sectorAt,
       metricAt,
+      metricSnapshot,
+      profitabilitySnapshot,
+      marketDimensionNames,
+      productDimensionNames,
       portfolioSnapshot,
       targetScenario,
       buildDecisionAlerts,
